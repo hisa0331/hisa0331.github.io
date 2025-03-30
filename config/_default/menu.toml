@@ -23,10 +23,10 @@ url = "https://www.linkedin.com/in/hisatoshi-naganawa0331/"
 [social.params]
 icon = "brand-linkedin"
 
-[[social]]
-identifier = "mail"
-name = "Mail"
-url = "mailto:2117053z@gsuite.kobe-u.ac.jp"
+#[[social]]
+#identifier = "mail"
+#name = "Mail"
+#url = "mailto:2117053z@gsuite.kobe-u.ac.jp"
 
-[social.params]
-icon = "mail"
+#[social.params]
+#icon = "mail"
