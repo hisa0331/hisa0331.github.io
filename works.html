@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Hisatoshi Naganawa の制作実績やプロジェクト例をご紹介します。"
+        />
+        <title>Works - Hisatoshi Naganawa Portfolio</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 60px 0 360px 0;
+                font-family: "EB Garamond", serif;
+                background: #f0f4f8;
+                color: #222;
+                min-height: 100vh;
+                height: 100%;
+                transition:
+                    background-color 0.3s ease,
+                    color 0.3s ease;
+            }
+
+            body.night-mode {
+                background: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            /* ===== Spacer Blocks for Scrolling ===== */
+            body::before,
+            body::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 100%;
+                background: #f0f4f8;
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            body::before {
+                top: 0;
+                height: 60px;
+            }
+
+            body::after {
+                bottom: 0;
+                height: 360px;
+            }
+
+            body.night-mode::before,
+            body.night-mode::after {
+                background: #1a1a1a;
+            }
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 10px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 50px;
+                z-index: 1000;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                color: #6699cc;
+                transition: all 0.3s ease;
+            }
+
+            body.night-mode header {
+                background: rgba(26, 26, 26, 0.95);
+                color: #88bbee;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            .night-mode-toggle {
+                background: rgba(255, 255, 255, 0.95);
+                border: 2px solid #6699cc;
+                color: #6699cc;
+                padding: 8px 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                font-family: "EB Garamond", serif;
+                flex: 0 0 auto;
+            }
+
+            body.night-mode .night-mode-toggle {
+                background: rgba(26, 26, 26, 0.95);
+                border: 2px solid #88bbee;
+                color: #88bbee;
+            }
+
+            .night-mode-toggle:hover {
+                background-color: #6699cc;
+                color: #ffffcc;
+            }
+
+            body.night-mode .night-mode-toggle:hover {
+                background-color: #88bbee;
+                color: #1a1a1a;
+            }
+
+            .header__logo {
+                margin-left: 30px;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: inherit;
+                text-decoration: none;
+                user-select: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .header__logo:hover {
+                opacity: 0.8;
+            }
+
+            .header__nav {
+                display: flex;
+                gap: 30px;
+                list-style: none;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+                flex: 1;
+            }
+
+            .header__nav-item {
+                display: inline-block;
+            }
+
+            .header__nav-link {
+                font-size: 1rem;
+                font-weight: normal;
+                color: inherit;
+                text-decoration: none;
+                cursor: pointer;
+                padding: 8px 12px;
+                border-radius: 4px;
+                border: 2px solid transparent;
+                transition: all 0.3s ease;
+                display: block;
+            }
+
+            .header__nav-link:hover {
+                background-color: rgba(102, 153, 204, 0.1);
+            }
+
+            .header__nav-link[aria-current="page"],
+            .header__nav-link.is-active {
+                background-color: #6699cc;
+                color: #ffffcc;
+            }
+
+            /* ===== Main Content ===== */
+            main {
+                margin: 0 auto;
+                width: 100%;
+                padding: 0;
+                background: #f0f4f8;
+                color: #222;
+                display: grid;
+                grid-template-columns: 280px 1fr;
+                grid-auto-rows: max-content;
+                gap: 40px 40px;
+                position: relative;
+                z-index: 10;
+            }
+
+            body.night-mode main {
+                background: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            .page-title {
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-weight: 700;
+                font-size: 2.5rem;
+                color: #333;
+                grid-column: 1 / -1;
+                padding: 0 40px;
+            }
+
+            body.night-mode .page-title {
+                color: #e0e0e0;
+            }
+
+            .page-subtitle {
+                margin: 0 0 40px;
+                font-size: 1.1rem;
+                color: #666;
+                line-height: 1.6;
+                grid-column: 1 / -1;
+                padding: 0 40px;
+            }
+
+            body.night-mode .page-subtitle {
+                color: #b0b0b0;
+            }
+
+            /* ===== Works List ===== */
+            .works-list {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .works-list__item {
+                margin-bottom: 50px;
+                padding-bottom: 40px;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .works-list__item:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+            .work-card {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .work-card__image {
+                width: 100%;
+                height: auto;
+                border-radius: 4px;
+                overflow: hidden;
+                background: #f5f5f5;
+            }
+
+            .work-card__image img {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: cover;
+            }
+
+            .work-card__content h3 {
+                margin: 0 0 15px;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #333;
+            }
+
+            .work-card__meta {
+                display: flex;
+                gap: 20px;
+                margin-bottom: 15px;
+                flex-wrap: wrap;
+            }
+
+            .work-card__meta-item {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .work-card__meta-label {
+                font-size: 0.875rem;
+                color: #999;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-bottom: 4px;
+            }
+
+            .work-card__meta-value {
+                color: #555;
+                font-size: 0.95rem;
+                word-break: break-word;
+            }
+
+            .work-card__description {
+                font-size: 0.95rem;
+                line-height: 1.7;
+                color: #555;
+            }
+
+            .work-card__description p {
+                margin: 0 0 10px;
+            }
+
+            .work-card__description p:last-child {
+                margin-bottom: 0;
+            }
+
+            .work-card__link {
+                display: inline-block;
+                margin-top: 15px;
+                color: #6699cc;
+                text-decoration: none;
+                font-weight: 600;
+                transition: opacity 0.3s ease;
+            }
+
+            .work-card__link:hover {
+                opacity: 0.8;
+                text-decoration: underline;
+            }
+
+            /* ===== Achievements Section ===== */
+            /* Achievements Sections */
+            .achievements-section {
+                margin-bottom: 40px;
+                padding: 30px 40px;
+                background: white;
+                border-bottom: 1px solid #ddd;
+                border-radius: 4px;
+                grid-column: 2;
+                scroll-margin-top: 120px;
+            }
+
+            body.night-mode .achievements-section {
+                background: #242424;
+                border-bottom-color: #444;
+            }
+
+            .achievements-section:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+                font-weight: 700;
+                margin-bottom: 20px;
+                color: #333;
+                position: relative;
+                padding-left: 15px;
+            }
+
+            body.night-mode .section-title {
+                color: #e0e0e0;
+            }
+
+            .section-title::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 4px;
+                height: 20px;
+                background-color: #6699cc;
+                border-radius: 2px;
+            }
+
+            .achievements-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .achievement-item {
+                margin-bottom: 15px;
+                padding: 12px;
+                background-color: #fafbfc;
+                border-radius: 4px;
+                line-height: 1.7;
+                font-size: 0.95rem;
+                transition: background-color 0.3s ease;
+            }
+
+            body.night-mode .achievement-item {
+                background-color: #2a2a2a;
+                color: #e0e0e0;
+            }
+
+            .achievement-item:hover {
+                background-color: #f0f4f8;
+            }
+
+            body.night-mode .achievement-item:hover {
+                background-color: #333;
+            }
+
+            .achievement-authors {
+                font-weight: 600;
+                color: #333;
+            }
+
+            body.night-mode .achievement-authors {
+                color: #e0e0e0;
+            }
+
+            .achievement-title {
+                font-style: italic;
+                color: #555;
+                margin: 0 3px;
+            }
+
+            body.night-mode .achievement-title {
+                color: #b0b0b0;
+            }
+
+            .achievement-journal {
+                font-weight: 600;
+                color: #6699cc;
+            }
+
+            .achievement-link {
+                display: inline-block;
+                margin-left: 8px;
+                color: #6699cc;
+                text-decoration: underline;
+                transition: opacity 0.3s ease;
+                font-size: 0.9rem;
+            }
+
+            .achievement-link:hover {
+                opacity: 0.7;
+            }
+
+            .achievement-event {
+                font-weight: 600;
+                color: #6699cc;
+            }
+
+            /* ===== Table of Contents ===== */
+            .table-of-contents {
+                background-color: #fafbfc;
+                border-left: 4px solid #6699cc;
+                padding: 20px;
+                border-radius: 4px;
+                height: fit-content;
+                position: sticky;
+                top: 120px;
+                grid-column: 1;
+            }
+
+            body.night-mode .table-of-contents {
+                background-color: #2a2a2a;
+                border-left-color: #88bbee;
+            }
+
+            .toc-title {
+                font-size: 1rem;
+                font-weight: 700;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            body.night-mode .toc-title {
+                color: #e0e0e0;
+            }
+
+            .toc-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .toc-item {
+                margin-bottom: 8px;
+            }
+
+            .toc-link {
+                display: block;
+                color: #6699cc;
+                text-decoration: none;
+                padding: 8px 0;
+                transition: all 0.3s ease;
+                border-left: 3px solid transparent;
+                padding-left: 10px;
+            }
+
+            .toc-link:hover {
+                background-color: #e8f4fd;
+                border-left-color: #6699cc;
+            }
+
+            body.night-mode .toc-link:hover {
+                background-color: #333;
+                border-left-color: #88bbee;
+            }
+
+            .toc-link.active {
+                font-weight: 700;
+                color: #fff;
+                border-left-color: #fff;
+                background-color: #6699cc;
+                border-radius: 4px;
+            }
+
+            body.night-mode .toc-link.active {
+                color: #1a1a1a;
+                border-left-color: #1a1a1a;
+                background-color: #88bbee;
+                border-radius: 4px;
+            }
+
+            /* ===== Footer ===== */
+            footer {
+                text-align: center;
+                padding: 30px 20px;
+                font-size: 0.7rem;
+                color: #6699cc;
+                background: transparent;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                backdrop-filter: blur(5px);
+                grid-column: 1 / -1;
+                z-index: 500;
+            }
+
+            body.night-mode footer {
+                color: #88bbee;
+                background: rgba(26, 26, 26, 0.95);
+            }
+
+            /* ===== Responsive Design ===== */
+            @media (max-width: 768px) {
+                main {
+                    grid-template-columns: 1fr;
+                    gap: 0;
+                    padding: 0;
+                    margin: 120px 0 100px;
+                }
+
+                .page-title {
+                    padding: 0 20px;
+                    font-size: 1.8rem;
+                }
+
+                .page-subtitle {
+                    padding: 0 20px;
+                    font-size: 1rem;
+                }
+
+                .table-of-contents {
+                    grid-column: 1;
+                    grid-row: auto;
+                    position: static;
+                    top: auto;
+                    margin-bottom: 30px;
+                    padding: 15px;
+                }
+
+                .achievements-section {
+                    grid-column: 1;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                }
+
+                .section-title {
+                    font-size: 1.1rem;
+                    margin-bottom: 15px;
+                }
+
+                .achievement-item {
+                    margin-bottom: 12px;
+                    padding: 10px;
+                    font-size: 0.9rem;
+                }
+
+                header {
+                    flex-direction: column;
+                    gap: 15px;
+                    padding: 15px 20px;
+                }
+
+                .header__logo {
+                    margin-left: 0;
+                    width: 100%;
+                }
+
+                .header__nav {
+                    margin: 0;
+                    gap: 15px;
+                    width: 100%;
+                    justify-content: center;
+                    margin-right: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <a href="index.html" class="header__logo">Hisatoshi Naganawa</a>
+            <nav role="navigation" aria-label="メインナビゲーション">
+                <ul class="header__nav">
+                    <li class="header__nav-item">
+                        <a href="index.html" class="header__nav-link">About</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a
+                            href="works.html"
+                            class="header__nav-link is-active"
+                            aria-current="page"
+                            >Works</a
+                        >
+                    </li>
+                    <li class="header__nav-item">
+                        <a
+                            href="https://note.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="header__nav-link"
+                            >Note</a
+                        >
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="contact.html" class="header__nav-link"
+                            >Contact</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+            <button class="night-mode-toggle">🌙 Dark</button>
+        </header>
+
+        <main role="main">
+            <h1 class="page-title">研究業績</h1>
+            <p class="page-subtitle">
+                査読済みの公刊論文、国際会議プロシーディング、国内会議発表、および学術賞を掲載しています。
+            </p>
+
+            <!-- 目次 -->
+            <nav
+                class="table-of-contents"
+                role="navigation"
+                aria-label="業績ページの目次"
+            >
+                <h2 class="toc-title">目次</h2>
+                <ul class="toc-list">
+                    <li class="toc-item">
+                        <a href="#published-papers" class="toc-link"
+                            >公刊学術論文（査読済み）</a
+                        >
+                    </li>
+                    <li class="toc-item">
+                        <a href="#under-review" class="toc-link"
+                            >査読中の論文</a
+                        >
+                    </li>
+                    <li class="toc-item">
+                        <a href="#in-preparation" class="toc-link"
+                            >執筆中の論文</a
+                        >
+                    </li>
+                    <li class="toc-item">
+                        <a href="#international-proceedings" class="toc-link"
+                            >国際会議プロシーディング（査読済み）</a
+                        >
+                    </li>
+                    <li class="toc-item">
+                        <a href="#domestic-proceedings" class="toc-link"
+                            >国内会議プロシーディング</a
+                        >
+                    </li>
+                    <li class="toc-item">
+                        <a href="#awards" class="toc-link">学術賞・奨学金</a>
+                    </li>
+                    <li class="toc-item">
+                        <a href="#other-activities" class="toc-link"
+                            >その他の学術活動</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- 公刊学術論文 -->
+            <section class="achievements-section" id="published-papers">
+                <h2 class="section-title">公刊学術論文（査読済み）</h2>
+                <ul class="achievements-list">
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata; Nailah
+                            Firdausiyah; Russel G. Thompson</span
+                        >,
+                        <span class="achievement-title"
+                            >"Logistics Hub and Route Optimization in the
+                            Physical Internet Paradigm"</span
+                        >, <span class="achievement-journal">Logistics</span>,
+                        Vol. 8, No. 2, p. 37, MDPI, 2024年4月7日.
+                        <a
+                            href="https://doi.org/10.3390/logistics8020037"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="achievement-link"
+                            >DOI: 10.3390/logistics8020037</a
+                        >
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata</span
+                        >,
+                        <span class="achievement-title"
+                            >"Enhancing Policy Generation with GraphRAG and
+                            YouTube Data: A Logistics Case Study"</span
+                        >, <span class="achievement-journal">Electronics</span>,
+                        Vol. 14, No. 7, p. 1241, MDPI, 2025年3月21日.
+                        <a
+                            href="https://doi.org/10.3390/electronics14071241"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="achievement-link"
+                            >DOI: 10.3390/electronics14071241</a
+                        >
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata</span
+                        >,
+                        <span class="achievement-title"
+                            >"Social media and logistics: Uncovering challenges
+                            and solutions through YouTube data"</span
+                        >, <span class="achievement-journal">Logistics</span>,
+                        Vol. 9, No. 2, p. 56, MDPI, 2025年4月23日.
+                        <a
+                            href="https://doi.org/10.3390/logistics9020056"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="achievement-link"
+                            >DOI: 10.3390/logistics9020056</a
+                        >
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata; Russel G.
+                            Thompson</span
+                        >,
+                        <span class="achievement-title"
+                            >"A sustainable crowd shipping model using public
+                            transport for low-carbon urban logistics"</span
+                        >,
+                        <span class="achievement-journal"
+                            >Cleaner Logistics and Supply Chain</span
+                        >, Vol. 17, p. 100276, Elsevier, 2025年10月16日.
+                        <a
+                            href="https://doi.org/10.1016/j.clscn.2025.100276"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="achievement-link"
+                            >DOI: 10.1016/j.clscn.2025.100276</a
+                        >
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata; Akira Yamada</span
+                        >,
+                        <span class="achievement-title"
+                            >"Implementing a knowledge management system with
+                            GraphRAG: A physical internet example"</span
+                        >, <span class="achievement-journal">Electronics</span>,
+                        Vol. 14, No. 24, p. 4948, MDPI, 2025年12月12日.
+                        <a
+                            href="https://doi.org/10.3390/electronics14244948"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="achievement-link"
+                            >DOI: 10.3390/electronics14244948</a
+                        >
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Enna Hirata; Hisatoshi Naganawa</span
+                        >,
+                        <span class="achievement-title"
+                            >"Outport network optimization - a case study from
+                            Japan"</span
+                        >, In Z. H. Munim & T. Notteboom (Eds.),
+                        <span class="achievement-journal"
+                            >Strategic Directions in Maritime Transport:
+                            Applications of Decision-Making Methods and
+                            Algorithms</span
+                        >, Springer Nature, 2026年 (掲載予定)
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 査読中の論文 -->
+            <section class="achievements-section" id="under-review">
+                <h2 class="section-title">査読中の論文</h2>
+                <ul class="achievements-list">
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Enna Hirata; Masoud Kahalimoghadam; Russell G.
+                            Thompson; Greg Foliente; Hisatoshi Naganawa</span
+                        >,
+                        <span class="achievement-title"
+                            >"Trade-War Spillovers and Resilience in
+                            Japan-Australia Container Shipping Networks: A
+                            Schedule-Based Simulation of Rerouting
+                            Cascades"</span
+                        >,
+                        <span class="achievement-journal"
+                            >Transportation Research Part E: Logistics and
+                            Transportation Review</span
+                        >, Elsevier (査読中)
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata; Kazuyo
+                            Yamaji</span
+                        >,
+                        <span class="achievement-title"
+                            >"Quantifying the multidimensional structure of
+                            social responses to rice crop residue burning in
+                            India: A computational linguistics analysis"</span
+                        >,
+                        <span class="achievement-journal"
+                            >International Journal of Environmental
+                            Research</span
+                        >, Springer Nature (査読中)
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata; Kazuyo
+                            Yamaji</span
+                        >,
+                        <span class="achievement-title"
+                            >"Chronological Changes in Discourse on Rice Crop
+                            Residue Burning in India: A Cross-Media Topic
+                            Analysis"</span
+                        >,
+                        <span class="achievement-journal"
+                            >International Journal of Environmental
+                            Research</span
+                        >, Springer Nature (査読中)
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata; Kazuyo
+                            Yamaji</span
+                        >,
+                        <span class="achievement-title"
+                            >"Spatiotemporal Dynamics of Public Sentiment Toward
+                            Rice Crop Residue Burning and Air Pollution in
+                            India: An Analysis Based on YouTube Data and Air
+                            Quality Indicators"</span
+                        >,
+                        <span class="achievement-journal"
+                            >Computers, Environment and Urban Systems</span
+                        >, Elsevier (査読中)
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa</span
+                        >,
+                        <span class="achievement-title"
+                            >"Comparative Study on Public Opinion Formation
+                            Regarding Logistics Issues: Through Analysis of
+                            Video Content and Comments in Japan and South
+                            Korea"</span
+                        >,
+                        <span class="achievement-journal"
+                            >New Media & Society</span
+                        >, Sage Publishing (査読中)
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 執筆中の論文 -->
+            <section class="achievements-section" id="in-preparation">
+                <h2 class="section-title">執筆中の論文</h2>
+                <ul class="achievements-list">
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa</span
+                        >,
+                        <span class="achievement-title"
+                            >"Optimization and Resilience Assessment of
+                            Multi-Agent Delivery Using Evolutionary Neural
+                            Networks in the context of Physical Internet"</span
+                        >
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa</span
+                        >,
+                        <span class="achievement-title"
+                            >"Piracy and Economic Factors in the Malacca Strait:
+                            Analysis of Crime Types using Topic Models"</span
+                        >
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 国際会議プロシーディング -->
+            <section
+                class="achievements-section"
+                id="international-proceedings"
+            >
+                <h2 class="section-title">
+                    国際会議プロシーディング（査読済み）
+                </h2>
+                <ul class="achievements-list">
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata</span
+                        >,
+                        <span class="achievement-title"
+                            >"Reinforcement Learning-Based Optimization of
+                            Logistical Hubs and Routing in the Context of the
+                            Physical Internet - A Case Study from Japan"</span
+                        >, Proceedings of 10th International Physical Internet
+                        Conference, Savannah, USA, 2024年5月29日 (査読済み).
+                        <a
+                            href="https://doi.org/10.35090/gatech/11084"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="achievement-link"
+                            >DOI: 10.35090/gatech/11084</a
+                        >
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa</span
+                        >,
+                        <span class="achievement-title"
+                            >"Consideration of Shipping using existing logistics
+                            resources – A case study from Japan"</span
+                        >, Proceedings of the 24th IAMUS, Massachusetts, USA,
+                        2024年10月9日.
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata; Russel G.
+                            Thompson; Akira Yamada</span
+                        >,
+                        <span class="achievement-title"
+                            >"Advancing the Physical Internet with GraphRAG: A
+                            New Way to Review and Integrate Existing
+                            Research"</span
+                        >, Proceedings of 11th International Physical Internet
+                        Conference, Hong Kong, China, 2025年6月18日 (査読済み).
+                        <a
+                            href="https://doi.org/10.35090/gatech/13249"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="achievement-link"
+                            >DOI: 10.35090/gatech/13249</a
+                        >
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >Hisatoshi Naganawa; Enna Hirata</span
+                        >,
+                        <span class="achievement-title"
+                            >"Optimization and Resilience Assessment of
+                            Multi-Agent Delivery Using Evolutionary Neural
+                            Networks in the context of Physical Internet"</span
+                        >, Proceedings of 12th International Physical Internet
+                        Conference, Bordeaux and Albi, France, 2026年6月5日
+                        (査読済み、掲載予定).
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 国内会議プロシーディング -->
+            <section class="achievements-section" id="domestic-proceedings">
+                <h2 class="section-title">国内会議プロシーディング</h2>
+                <ul class="achievements-list">
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >長縄 尚駿; 平田 燕奈</span
+                        >,
+                        <span class="achievement-title"
+                            >「フィジカルインターネットにおける物流拠点の最適立地とルートの最適化」</span
+                        >, 第68回土木計画学研究発表会・秋大会, 東京都立大学
+                        南大沢キャンパス, 東京都, 2023年11月26日.
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >長縄 尚駿; 平田 燕奈</span
+                        >,
+                        <span class="achievement-title"
+                            >「物流の2024年問題:
+                            YouTubeのコメントデータを用いた自然言語処理分析」</span
+                        >, 第70回土木計画学研究発表会・秋大会, 岡山大学
+                        津島キャンパス, 岡山県, 2024年11月16日.
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >長縄 尚駿; 平田 燕奈</span
+                        >,
+                        <span class="achievement-title"
+                            >「YouTubeにおける物流の2024年問題:
+                            自然言語処理を用いた分析」</span
+                        >, 情報処理学会 第87回全国大会, 立命館大学
+                        大阪いばらきキャンパス, 大阪府, 2025年3月15日.
+                    </li>
+                    <li class="achievement-item">
+                        <span class="achievement-authors"
+                            >長縄 尚駿; 平田 燕奈; 山地 一代</span
+                        >,
+                        <span class="achievement-title"
+                            >「インドにおける稲作残渣焼却と大気汚染に対する社会的感情の時空間的動態：YouTubeデータと大気質指標に基づく分析」</span
+                        >, 情報処理学会 第267回自然言語処理研究発表会,
+                        ライトキューブ宇都宮, 栃木県, 2026年3月8日.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 賞罰 -->
+            <section class="achievements-section" id="awards">
+                <h2 class="section-title">学術賞・奨学金</h2>
+                <ul class="achievements-list">
+                    <li class="achievement-item">
+                        キーエンス財団 応援給付金 給付
+                    </li>
+                    <li class="achievement-item">
+                        神戸大学 梅木奨学会学生学会派遣奨学金 給付
+                    </li>
+                    <li class="achievement-item">
+                        2024年度 日本物流学会 物流研究奨励賞 受賞
+                    </li>
+                </ul>
+            </section>
+
+            <!-- その他業績 -->
+            <section class="achievements-section" id="other-activities">
+                <h2 class="section-title">その他の学術活動</h2>
+                <ul class="achievements-list">
+                    <li class="achievement-item">
+                        <span class="achievement-event">Techno-Ocean 2025</span
+                        >, ポスター発表, 神戸国際展示場2号館, 兵庫県,
+                        2025年11月27日~29日.
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer role="contentinfo">
+            <small>&copy; 2025 Hisatoshi Naganawa. All rights reserved.</small>
+        </footer>
+
+        <script>
+            /**
+             * Nightモード機能
+             */
+            (function initNightMode() {
+                try {
+                    const toggleBtn =
+                        document.querySelector(".night-mode-toggle");
+                    const body = document.body;
+                    const isDarkMode =
+                        localStorage.getItem("nightMode") === "true";
+
+                    if (isDarkMode) {
+                        body.classList.add("night-mode");
+                        if (toggleBtn) toggleBtn.textContent = "☀️ Light";
+                    }
+
+                    if (toggleBtn) {
+                        toggleBtn.addEventListener("click", () => {
+                            body.classList.toggle("night-mode");
+                            const isNow = body.classList.contains("night-mode");
+                            localStorage.setItem("nightMode", isNow);
+                            toggleBtn.textContent = isNow
+                                ? "☀️ Light"
+                                : "🌙 Dark";
+                        });
+                    }
+                } catch (error) {
+                    console.error("Nightモード初期化エラー:", error);
+                }
+            })();
+
+            /**
+             * ナビゲーションリンクの active 状態管理
+             * 現在のページに対応するリンクに is-active クラスを付与
+             */
+            (function initNavigation() {
+                try {
+                    const navLinks =
+                        document.querySelectorAll(".header__nav-link");
+
+                    if (!navLinks || navLinks.length === 0) {
+                        console.warn("ナビゲーションリンクが見つかりません。");
+                        return;
+                    }
+
+                    const currentPath = window.location.pathname;
+                    const currentFileName =
+                        currentPath.split("/").pop() || "index.html";
+
+                    navLinks.forEach((link) => {
+                        const href = link.getAttribute("href");
+
+                        if (!href) return;
+
+                        // 外部リンク（target="_blank"）はスキップ
+                        if (
+                            link.getAttribute("target") === "_blank" ||
+                            href.startsWith("http")
+                        ) {
+                            return;
+                        }
+
+                        // 現在のページと一致するリンクに is-active クラスを追加
+                        const linkFileName =
+                            href.split("/").pop() || "index.html";
+                        if (
+                            linkFileName === currentFileName ||
+                            (currentFileName === "" &&
+                                linkFileName === "index.html")
+                        ) {
+                            link.classList.add("is-active");
+                            link.setAttribute("aria-current", "page");
+                        } else {
+                            link.classList.remove("is-active");
+                            link.removeAttribute("aria-current");
+                        }
+                    });
+                } catch (error) {
+                    console.error("ナビゲーション初期化エラー:", error);
+                }
+            })();
+
+            /**
+             * 目次の機能：スムーススクロールと現在セクション追跡
+             */
+            (function initTableOfContents() {
+                try {
+                    const tocLinks = document.querySelectorAll(".toc-link");
+                    const sections = document.querySelectorAll(
+                        ".achievements-section",
+                    );
+
+                    if (tocLinks.length === 0 || sections.length === 0) {
+                        console.warn("目次またはセクションが見つかりません。");
+                        return;
+                    }
+
+                    // スムーススクロール: 目次リンク をクリック時のスムーススクロール
+                    tocLinks.forEach((link) => {
+                        link.addEventListener("click", (event) => {
+                            event.preventDefault();
+                            const targetId = link.getAttribute("href");
+                            const targetSection =
+                                document.querySelector(targetId);
+
+                            if (targetSection) {
+                                targetSection.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start",
+                                });
+                            }
+                        });
+                    });
+
+                    // スクロール時に現在のセクションをハイライト
+                    function updateActiveTOCLink() {
+                        let activeSection = null;
+
+                        // 各セクションがビューポート内にあるかを確認
+                        sections.forEach((section) => {
+                            const rect = section.getBoundingClientRect();
+                            // セクションがビューポートの上部50%以内にあれば、現在のセクションとする
+                            if (rect.top < window.innerHeight * 0.5) {
+                                activeSection = section;
+                            }
+                        });
+
+                        // 全ての目次リンクから "active" クラスを削除
+                        tocLinks.forEach((link) => {
+                            link.classList.remove("active");
+                        });
+
+                        // 現在のセクションに対応する目次リンクに "active" クラスを追加
+                        if (activeSection) {
+                            const activeLinkSelector =
+                                ".toc-link[href='#" + activeSection.id + "']";
+                            const activeLink =
+                                document.querySelector(activeLinkSelector);
+                            if (activeLink) {
+                                activeLink.classList.add("active");
+                            }
+                        }
+                    }
+
+                    // スクロールイベントで更新（遅延実行で パフォーマンス向上）
+                    let ticking = false;
+                    window.addEventListener("scroll", () => {
+                        if (!ticking) {
+                            window.requestAnimationFrame(() => {
+                                updateActiveTOCLink();
+                                ticking = false;
+                            });
+                            ticking = true;
+                        }
+                    });
+
+                    // ページロード時に初回実行
+                    updateActiveTOCLink();
+                } catch (error) {
+                    console.error("目次初期化エラー:", error);
+                }
+            })();
+        </script>
+    </body>
+</html>

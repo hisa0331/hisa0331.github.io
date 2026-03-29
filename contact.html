@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Hisatoshi Naganawa へのお問い合わせは、このフォームからお送りください。お仕事のご依頼やご質問にお答えします。"
+        />
+        <title>Contact - Hisatoshi Naganawa Portfolio</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 60px 0 180px 0;
+                font-family: "EB Garamond", serif;
+                background-color: #f0f4f8;
+                color: #222;
+                min-height: 100vh;
+                height: 100%;
+                transition:
+                    background-color 0.3s ease,
+                    color 0.3s ease;
+            }
+
+            body.night-mode {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            /* ===== Spacer Blocks for Scrolling ===== */
+            body::before,
+            body::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 100%;
+                background: #f0f4f8;
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            body::before {
+                top: 0;
+                height: 60px;
+            }
+
+            body::after {
+                bottom: 0;
+                height: 180px;
+            }
+
+            body.night-mode::before,
+            body.night-mode::after {
+                background: #1a1a1a;
+            }
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 10px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 50px;
+                z-index: 1000;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                color: #6699cc;
+                transition: all 0.3s ease;
+            }
+
+            body.night-mode header {
+                background: rgba(26, 26, 26, 0.95);
+                color: #88bbee;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            .night-mode-toggle {
+                background: rgba(255, 255, 255, 0.95);
+                border: 2px solid #6699cc;
+                color: #6699cc;
+                padding: 8px 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                font-family: "EB Garamond", serif;
+                flex: 0 0 auto;
+            }
+
+            body.night-mode .night-mode-toggle {
+                background: rgba(26, 26, 26, 0.95);
+                border: 2px solid #88bbee;
+                color: #88bbee;
+            }
+
+            .night-mode-toggle:hover {
+                background-color: #6699cc;
+                color: #ffffcc;
+            }
+
+            body.night-mode .night-mode-toggle:hover {
+                background-color: #88bbee;
+                color: #1a1a1a;
+            }
+
+            .header__logo {
+                margin-left: 30px;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: inherit;
+                text-decoration: none;
+                user-select: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .header__logo:hover {
+                opacity: 0.8;
+            }
+
+            .header__nav {
+                display: flex;
+                gap: 30px;
+                list-style: none;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+                flex: 1;
+            }
+
+            .header__nav-item {
+                display: inline-block;
+            }
+
+            .header__nav-link {
+                font-size: 1rem;
+                font-weight: normal;
+                color: inherit;
+                text-decoration: none;
+                cursor: pointer;
+                padding: 8px 12px;
+                border-radius: 4px;
+                border: 2px solid transparent;
+                transition: all 0.3s ease;
+                display: block;
+            }
+
+            .header__nav-link:hover {
+                background-color: rgba(102, 153, 204, 0.1);
+            }
+
+            .header__nav-link[aria-current="page"],
+            .header__nav-link.is-active {
+                background-color: #6699cc;
+                color: #ffffcc;
+            }
+
+            /* ===== Main Content ===== */
+            main {
+                width: 100%;
+                margin: 0 auto;
+                padding: 40px;
+                background: #f0f4f8;
+                color: #222;
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 10;
+            }
+
+            body.night-mode main {
+                background: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-weight: 700;
+                color: #333;
+            }
+
+            body.night-mode .page-title {
+                color: #e0e0e0;
+            }
+
+            .page-subtitle {
+                margin: 0 0 30px;
+                line-height: 1.7;
+                color: #555;
+            }
+
+            body.night-mode .page-subtitle {
+                color: #d0d0d0;
+            }
+
+            /* ===== Form Styles ===== */
+            .form {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .form__group {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .form__label {
+                font-weight: 600;
+                color: #333;
+                font-size: 0.95rem;
+            }
+
+            body.night-mode .form__label {
+                color: #e0e0e0;
+            }
+
+            .form__input,
+            .form__textarea {
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-family: "EB Garamond", serif;
+                font-size: 0.95rem;
+                transition: border-color 0.3s ease;
+                background-color: #fafafa;
+            }
+
+            body.night-mode .form__input,
+            body.night-mode .form__textarea {
+                background-color: #333;
+                border-color: #555;
+                color: #e0e0e0;
+            }
+
+            .form__input:focus,
+            .form__textarea:focus {
+                outline: none;
+                border-color: #6699cc;
+                background-color: #fff;
+            }
+
+            body.night-mode .form__input:focus,
+            body.night-mode .form__textarea:focus {
+                border-color: #88bbee;
+                background-color: #252525;
+            }
+
+            .form__textarea {
+                resize: vertical;
+                min-height: 120px;
+            }
+
+            .form__button {
+                width: 140px;
+                padding: 12px 24px;
+                border: none;
+                background-color: #6699cc;
+                color: #ffffcc;
+                font-weight: 600;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+            }
+
+            body.night-mode .form__button {
+                background-color: #88bbee;
+                color: #0d0d0d;
+            }
+
+            .form__button:hover {
+                background-color: #557aab;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            body.night-mode .form__button:hover {
+                background-color: #6699cc;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            }
+
+            .form__button:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+                transform: none;
+            }
+
+            /* ===== Footer ===== */
+            footer {
+                text-align: center;
+                padding: 30px 20px;
+                font-size: 0.7rem;
+                color: #6699cc;
+                background: transparent;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                backdrop-filter: blur(5px);
+                z-index: 500;
+            }
+
+            body.night-mode footer {
+                color: #88bbee;
+                background: rgba(26, 26, 26, 0.95);
+            }
+
+            /* ===== Responsive Design ===== */
+            @media (max-width: 768px) {
+                header {
+                    flex-direction: column;
+                    gap: 15px;
+                    padding: 15px 20px;
+                }
+
+                .header__logo {
+                    margin-left: 0;
+                    width: 100%;
+                    font-size: 1.2rem;
+                }
+
+                .header__nav {
+                    margin: 0;
+                    gap: 15px;
+                    width: 100%;
+                    justify-content: center;
+                    margin-right: 0;
+                }
+
+                .header__nav-link {
+                    font-size: 0.9rem;
+                    padding: 6px 10px;
+                }
+
+                main {
+                    margin: 200px auto 100px;
+                    padding: 20px;
+                }
+
+                .page-title {
+                    font-size: 1.8rem;
+                }
+
+                .form__button {
+                    width: 100%;
+                }
+
+                .form__label {
+                    font-size: 0.9rem;
+                }
+
+                .form__input,
+                .form__textarea {
+                    font-size: 16px;
+                    padding: 10px;
+                }
+
+                footer {
+                    padding: 20px 10px;
+                    font-size: 0.65rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                header {
+                    padding: 10px 15px;
+                }
+
+                .header__logo {
+                    font-size: 1rem;
+                    margin-bottom: 10px;
+                }
+
+                .header__nav {
+                    gap: 10px;
+                }
+
+                .header__nav-link {
+                    font-size: 0.8rem;
+                    padding: 5px 8px;
+                }
+
+                main {
+                    margin: 180px auto 80px;
+                    padding: 15px;
+                    max-width: 100%;
+                }
+
+                .page-title {
+                    font-size: 1.5rem;
+                    margin-bottom: 15px;
+                }
+
+                .page-subtitle {
+                    font-size: 0.9rem;
+                    line-height: 1.6;
+                }
+
+                .form {
+                    gap: 1rem;
+                }
+
+                .form__group {
+                    gap: 0.3rem;
+                }
+
+                .form__label {
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                }
+
+                .form__input,
+                .form__textarea {
+                    font-size: 16px;
+                    padding: 10px;
+                    border-radius: 3px;
+                }
+
+                .form__textarea {
+                    min-height: 100px;
+                }
+
+                .form__button {
+                    width: 100%;
+                    padding: 10px 16px;
+                    font-size: 0.9rem;
+                }
+
+                footer {
+                    padding: 15px 10px;
+                    font-size: 0.6rem;
+                }
+
+                .night-mode-toggle {
+                    padding: 6px 12px;
+                    font-size: 0.8rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <a href="index.html" class="header__logo">Hisatoshi Naganawa</a>
+            <nav role="navigation" aria-label="メインナビゲーション">
+                <ul class="header__nav">
+                    <li class="header__nav-item">
+                        <a href="index.html" class="header__nav-link">About</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="works.html" class="header__nav-link">Works</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a
+                            href="https://note.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="header__nav-link"
+                            >Note</a
+                        >
+                    </li>
+                    <li class="header__nav-item">
+                        <a
+                            href="contact.html"
+                            class="header__nav-link is-active"
+                            aria-current="page"
+                            >Contact</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+            <button class="night-mode-toggle">🌙 Dark</button>
+        </header>
+
+        <main role="main">
+            <h1 class="page-title">お問い合わせ</h1>
+            <p class="page-subtitle">
+                お仕事のご依頼やご質問など、お気軽にお問い合わせください。
+                通常、確認後3営業日以内にご返信いたします。
+            </p>
+            <form class="form" method="POST" action="#" novalidate>
+                <div class="form__group">
+                    <label for="name" class="form__label"
+                        >お名前 <span aria-label="必須">*</span></label
+                    >
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="form__input"
+                        required
+                        aria-required="true"
+                        placeholder="山田太郎"
+                    />
+                </div>
+
+                <div class="form__group">
+                    <label for="email" class="form__label"
+                        >メールアドレス <span aria-label="必須">*</span></label
+                    >
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form__input"
+                        required
+                        aria-required="true"
+                        placeholder="example@example.com"
+                    />
+                </div>
+
+                <div class="form__group">
+                    <label for="subject" class="form__label">件名</label>
+                    <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        class="form__input"
+                        placeholder="お問い合わせの件名をご入力ください"
+                    />
+                </div>
+
+                <div class="form__group">
+                    <label for="message" class="form__label"
+                        >メッセージ <span aria-label="必須">*</span></label
+                    >
+                    <textarea
+                        id="message"
+                        name="message"
+                        class="form__textarea"
+                        required
+                        aria-required="true"
+                        placeholder="ご質問や依頼内容をご入力ください"
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="form__button">送信する</button>
+            </form>
+        </main>
+
+        <footer role="contentinfo">
+            <small>&copy; 2025 Hisatoshi Naganawa. All rights reserved.</small>
+        </footer>
+
+        <script>
+            /**
+             * Nightモード機能
+             */
+            (function initNightMode() {
+                try {
+                    const toggleBtn =
+                        document.querySelector(".night-mode-toggle");
+                    const body = document.body;
+                    const isDarkMode =
+                        localStorage.getItem("nightMode") === "true";
+
+                    if (isDarkMode) {
+                        body.classList.add("night-mode");
+                        if (toggleBtn) toggleBtn.textContent = "☀️ Light";
+                    }
+
+                    if (toggleBtn) {
+                        toggleBtn.addEventListener("click", () => {
+                            body.classList.toggle("night-mode");
+                            const isNow = body.classList.contains("night-mode");
+                            localStorage.setItem("nightMode", isNow);
+                            toggleBtn.textContent = isNow
+                                ? "☀️ Light"
+                                : "🌙 Dark";
+                        });
+                    }
+                } catch (error) {
+                    console.error("Nightモード初期化エラー:", error);
+                }
+            })();
+
+            /**
+             * ナビゲーションリンクの active 状態管理
+             * 現在のページに対応するリンクに is-active クラスを付与
+             */
+            (function initNavigation() {
+                try {
+                    const navLinks =
+                        document.querySelectorAll(".header__nav-link");
+
+                    if (!navLinks || navLinks.length === 0) {
+                        console.warn("ナビゲーションリンクが見つかりません。");
+                        return;
+                    }
+
+                    const currentPath = window.location.pathname;
+                    const currentFileName =
+                        currentPath.split("/").pop() || "index.html";
+
+                    navLinks.forEach((link) => {
+                        const href = link.getAttribute("href");
+
+                        if (!href) return;
+
+                        // 外部リンク（target="_blank"）はスキップ
+                        if (
+                            link.getAttribute("target") === "_blank" ||
+                            href.startsWith("http")
+                        ) {
+                            return;
+                        }
+
+                        // 現在のページと一致するリンクに is-active クラスを追加
+                        const linkFileName =
+                            href.split("/").pop() || "index.html";
+                        if (
+                            linkFileName === currentFileName ||
+                            (currentFileName === "" &&
+                                linkFileName === "index.html")
+                        ) {
+                            link.classList.add("is-active");
+                            link.setAttribute("aria-current", "page");
+                        } else {
+                            link.classList.remove("is-active");
+                            link.removeAttribute("aria-current");
+                        }
+                    });
+                } catch (error) {
+                    console.error("ナビゲーション初期化エラー:", error);
+                }
+            })();
+
+            /**
+             * フォームの送信処理
+             * 基本的なバリデーションを含む
+             */
+            (function initForm() {
+                try {
+                    const form = document.querySelector(".form");
+
+                    if (!form) {
+                        console.warn("フォームが見つかりません。");
+                        return;
+                    }
+
+                    form.addEventListener("submit", (e) => {
+                        e.preventDefault();
+
+                        // フォームのバリデーション
+                        const name = document
+                            .getElementById("name")
+                            .value.trim();
+                        const email = document
+                            .getElementById("email")
+                            .value.trim();
+                        const message = document
+                            .getElementById("message")
+                            .value.trim();
+
+                        if (!name || !email || !message) {
+                            alert("必須項目をすべて入力してください。");
+                            return;
+                        }
+
+                        // メールアドレス形式の検証
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(email)) {
+                            alert("有効なメールアドレスを入力してください。");
+                            return;
+                        }
+
+                        // フォーム送信（実装は必要に応じて変更）
+                        alert(
+                            "お問い合わせいただきありがとうございます。\nご返信まで少々お待ちください。",
+                        );
+                        form.reset();
+                    });
+                } catch (error) {
+                    console.error("フォーム初期化エラー:", error);
+                }
+            })();
+        </script>
+
+        <script>
+            /**
+             * ナビゲーションリンクの active 状態管理
+             * 現在のページに対応するリンクに is-active クラスを付与
+             */
+            (function initNavigation() {
+                try {
+                    const navLinks =
+                        document.querySelectorAll(".header__nav-link");
+
+                    if (!navLinks || navLinks.length === 0) {
+                        console.warn("ナビゲーションリンクが見つかりません。");
+                        return;
+                    }
+
+                    const currentPath = window.location.pathname;
+                    const currentFileName =
+                        currentPath.split("/").pop() || "index.html";
+
+                    navLinks.forEach((link) => {
+                        const href = link.getAttribute("href");
+
+                        if (!href) return;
+
+                        // 外部リンク（target="_blank"）はスキップ
+                        if (
+                            link.getAttribute("target") === "_blank" ||
+                            href.startsWith("http")
+                        ) {
+                            return;
+                        }
+
+                        // 現在のページと一致するリンクに is-active クラスを追加
+                        const linkFileName =
+                            href.split("/").pop() || "index.html";
+                        if (
+                            linkFileName === currentFileName ||
+                            (currentFileName === "" &&
+                                linkFileName === "index.html")
+                        ) {
+                            link.classList.add("is-active");
+                            link.setAttribute("aria-current", "page");
+                        } else {
+                            link.classList.remove("is-active");
+                            link.removeAttribute("aria-current");
+                        }
+                    });
+                } catch (error) {
+                    console.error("ナビゲーション初期化エラー:", error);
+                }
+            })();
+
+            /**
+             * フォームの送信処理
+             * 基本的なバリデーションを含む
+             */
+            (function initForm() {
+                try {
+                    const form = document.querySelector(".form");
+
+                    if (!form) {
+                        console.warn("フォームが見つかりません。");
+                        return;
+                    }
+
+                    form.addEventListener("submit", (e) => {
+                        e.preventDefault();
+
+                        // フォームのバリデーション
+                        const name = document
+                            .getElementById("name")
+                            .value.trim();
+                        const email = document
+                            .getElementById("email")
+                            .value.trim();
+                        const message = document
+                            .getElementById("message")
+                            .value.trim();
+
+                        if (!name || !email || !message) {
+                            alert("必須項目をすべて入力してください。");
+                            return;
+                        }
+
+                        // メールアドレス形式の検証
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(email)) {
+                            alert("有効なメールアドレスを入力してください。");
+                            return;
+                        }
+
+                        // フォーム送信（実装は必要に応じて変更）
+                        alert(
+                            "お問い合わせいただきありがとうございます。\nご返信まで少々お待ちください。",
+                        );
+                        form.reset();
+                    });
+                } catch (error) {
+                    console.error("フォーム初期化エラー:", error);
+                }
+            })();
+        </script>
+    </body>
+</html>

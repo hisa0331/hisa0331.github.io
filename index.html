@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Hisatoshi Naganawa のポートフォリオサイト。デザインとコーディング、3D表現を活用したインタラクティブなウェブサイト制作を行っています。"
+        />
+        <title>Hisatoshi Naganawa Portfolio</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            :root {
+                --bg-color: #f0f4f8;
+                --text-color: #ffffff;
+                --header-bg: rgba(255, 255, 255, 0.95);
+                --header-color: #6699cc;
+                --accent-color: #6699cc;
+                --accent-light: #ffffcc;
+                --main-bg: #f0f4f8;
+                --main-text: #222;
+                --main-title: #333;
+            }
+
+            body.night-mode {
+                --bg-color: #1a1a1a;
+                --text-color: #e0e0e0;
+                --header-bg: rgba(26, 26, 26, 0.95);
+                --header-color: #88bbee;
+                --main-bg: #2a2a2a;
+                --main-text: #e0e0e0;
+                --main-title: #cccccc;
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "EB Garamond", serif;
+                background-color: var(--bg-color);
+                overflow-x: hidden;
+                color: var(--text-color);
+                transition:
+                    background-color 0.3s ease,
+                    color 0.3s ease;
+            }
+
+            /* ===== Header & Navigation ===== */
+            header,
+            footer {
+                position: fixed;
+                left: 0;
+                width: 100%;
+                padding: 10px 20px;
+                display: flex;
+                align-items: center;
+                z-index: 1000;
+                background: transparent;
+                backdrop-filter: blur(10px);
+                color: #ffffcc;
+                transition: color 0.3s ease;
+            }
+
+            header {
+                top: 0;
+                justify-content: space-between;
+                gap: 50px;
+                height: 60px;
+            }
+
+            /* ===== Night Mode Toggle ===== */
+            .night-mode-toggle {
+                position: relative;
+                background: rgba(255, 255, 255, 0.2);
+                border: 2px solid #ffffcc;
+                color: #ffffcc;
+                padding: 8px 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                font-family: "EB Garamond", serif;
+                transition: all 0.3s ease;
+                white-space: nowrap;
+            }
+
+            .night-mode-toggle:hover {
+                background-color: #ffffcc;
+                color: #6699cc;
+            }
+
+            body.night-mode .night-mode-toggle {
+                border-color: #88bbee;
+                color: #88bbee;
+                background: rgba(26, 26, 26, 0.8);
+            }
+
+            body.night-mode .night-mode-toggle:hover {
+                background-color: #88bbee;
+                color: #1a1a1a;
+            }
+
+            footer {
+                bottom: 0;
+                justify-content: center;
+                font-size: 0.7rem;
+            }
+
+            header.light-text,
+            footer.light-text {
+                color: #6699cc;
+            }
+
+            .header__logo {
+                margin-left: 30px;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: inherit;
+                text-decoration: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .header__logo:hover {
+                opacity: 0.8;
+            }
+
+            .header__nav {
+                display: flex;
+                gap: 30px;
+                list-style: none;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+                flex: 1;
+            }
+
+            .header__nav-item {
+                display: inline-block;
+            }
+
+            .header__nav-link {
+                font-size: 1.1rem;
+                font-weight: bold;
+                color: inherit;
+                text-decoration: none;
+                cursor: pointer;
+                padding: 6px 12px;
+                border-radius: 4px;
+                transition:
+                    background-color 0.3s ease,
+                    color 0.3s ease;
+            }
+
+            .header__nav-link:hover {
+                color: #6699cc;
+            }
+
+            .header__nav-link.is-active {
+                background-color: #6699cc;
+                color: #ffffcc;
+            }
+
+            /* ===== Canvas Background ===== */
+            #node-1 {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 0;
+                pointer-events: none;
+                transition: opacity 0.5s ease;
+            }
+
+            /* ===== Main Content ===== */
+            main {
+                position: relative;
+                z-index: 10;
+                max-width: 900px;
+                margin: 150vh auto 0;
+                padding: 40px;
+                background: #f0f4f8;
+                color: #222;
+                opacity: 0;
+                transition: opacity 1s ease;
+                pointer-events: none;
+                min-height: 100vh;
+            }
+
+            body.night-mode main {
+                background: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            main.is-visible {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .page {
+                margin-bottom: 60px;
+            }
+
+            .page-title {
+                font-size: 2.2rem;
+                margin-top: 0;
+                font-weight: 700;
+                color: #333;
+            }
+
+            body.night-mode .page-title {
+                color: #e0e0e0;
+            }
+
+            .page-text {
+                line-height: 1.8;
+                color: #444;
+            }
+
+            body.night-mode .page-text {
+                color: #d0d0d0;
+            }
+
+            .page-text p {
+                margin: 0 0 15px;
+            }
+
+            .page-text p:last-child {
+                margin-bottom: 0;
+            }
+
+            /* ===== Profile Section ===== */
+            .profile-header {
+                display: flex;
+                gap: 30px;
+                margin-bottom: 40px;
+                align-items: flex-start;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #6699cc 0%, #88bbee 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 60px;
+                flex-shrink: 0;
+            }
+
+            .profile-info {
+                flex: 1;
+            }
+
+            .profile-info h2 {
+                margin: 0 0 10px;
+                font-size: 1.8rem;
+                color: #333;
+            }
+
+            body.night-mode .profile-info h2 {
+                color: #e0e0e0;
+            }
+
+            .profile-title {
+                color: #6699cc;
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+
+            body.night-mode .profile-title {
+                color: #88bbee;
+            }
+
+            .profile-description {
+                line-height: 1.8;
+                color: #555;
+                margin-bottom: 15px;
+            }
+
+            body.night-mode .profile-description {
+                color: #d0d0d0;
+            }
+
+            /* ===== Social Links ===== */
+            .social-links {
+                display: flex;
+                gap: 15px;
+                margin-top: 15px;
+            }
+
+            .social-link {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                background-color: #6699cc;
+                color: #ffffcc;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                font-size: 1.2rem;
+            }
+
+            .social-link:hover {
+                background-color: #557aab;
+                transform: translateY(-3px);
+                box-shadow: 0 4px 12px rgba(102, 153, 204, 0.3);
+            }
+
+            body.night-mode .social-link {
+                background-color: #88bbee;
+                color: #0d0d0d;
+            }
+
+            body.night-mode .social-link:hover {
+                background-color: #6699cc;
+            }
+
+            /* ===== Experience Sections ===== */
+            .experience-section {
+                margin-bottom: 40px;
+            }
+
+            .experience-section h3 {
+                font-size: 1.3rem;
+                color: #333;
+                border-bottom: 2px solid #6699cc;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+
+            body.night-mode .experience-section h3 {
+                color: #e0e0e0;
+                border-bottom-color: #88bbee;
+            }
+
+            .experience-item {
+                margin-bottom: 25px;
+                padding-left: 20px;
+                border-left: 3px solid #6699cc;
+            }
+
+            body.night-mode .experience-item {
+                border-left-color: #88bbee;
+            }
+
+            .experience-item h4 {
+                margin: 0 0 5px;
+                font-size: 1rem;
+                color: #333;
+            }
+
+            body.night-mode .experience-item h4 {
+                color: #e0e0e0;
+            }
+
+            .experience-item .period {
+                color: #999;
+                font-size: 0.9rem;
+                margin-bottom: 5px;
+            }
+
+            body.night-mode .experience-item .period {
+                color: #88bbee;
+            }
+
+            .experience-item p {
+                margin: 5px 0 0;
+                color: #555;
+                line-height: 1.6;
+            }
+
+            body.night-mode .experience-item p {
+                color: #d0d0d0;
+            }
+
+            /* ===== Features ===== */
+            .features {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            .feature-item {
+                background: #f9f9f9;
+                padding: 20px;
+                border-radius: 8px;
+                border-left: 4px solid #6699cc;
+            }
+
+            body.night-mode .feature-item {
+                background: #252525;
+                border-left-color: #88bbee;
+            }
+
+            .feature-item h4 {
+                margin: 0 0 10px;
+                color: #6699cc;
+                font-size: 1rem;
+            }
+
+            body.night-mode .feature-item h4 {
+                color: #88bbee;
+            }
+
+            .feature-item p {
+                margin: 0;
+                color: #555;
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            body.night-mode .feature-item p {
+                color: #d0d0d0;
+            }
+
+            /* ===== Responsive Design ===== */
+            @media (max-width: 768px) {
+                .profile-header {
+                    flex-direction: column;
+                    gap: 20px;
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .profile-image {
+                    width: 120px;
+                    height: 120px;
+                    font-size: 50px;
+                }
+
+                .profile-info h2 {
+                    font-size: 1.5rem;
+                }
+
+                .features {
+                    grid-template-columns: 1fr;
+                }
+
+                .experience-section h3 {
+                    font-size: 1.1rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .profile-header {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+
+                .profile-image {
+                    width: 100px;
+                    height: 100px;
+                    font-size: 40px;
+                }
+
+                .profile-info h2 {
+                    font-size: 1.3rem;
+                }
+
+                .social-links {
+                    justify-content: center;
+                }
+
+                .experience-section h3 {
+                    font-size: 1rem;
+                    margin-bottom: 15px;
+                }
+
+                .experience-item {
+                    margin-bottom: 20px;
+                    padding-left: 15px;
+                }
+
+                .feature-item {
+                    padding: 15px;
+                }
+            }
+
+            /* ===== Typing Animation ===== */
+            /* ===== Responsive Design ===== */
+            @media (max-width: 768px) {
+                header {
+                    flex-direction: column;
+                    gap: 15px;
+                    padding: 15px 20px;
+                }
+
+                .header__logo {
+                    margin-left: 0;
+                    width: 100%;
+                }
+
+                .header__nav {
+                    margin: 0;
+                    gap: 15px;
+                    width: 100%;
+                    justify-content: center;
+                    margin-right: 0;
+                }
+
+                main {
+                    margin: 150vh auto 0;
+                    padding: 20px;
+                }
+
+                .page-title {
+                    font-size: 1.6rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner" id="header">
+            <a href="#" class="header__logo">Hisatoshi Naganawa</a>
+            <nav role="navigation" aria-label="メインナビゲーション">
+                <ul class="header__nav">
+                    <li class="header__nav-item">
+                        <a
+                            href="#page1"
+                            class="header__nav-link is-active"
+                            data-target="page1"
+                        >
+                            About
+                        </a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="works.html" class="header__nav-link">Works</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a
+                            href="https://note.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="header__nav-link"
+                            >Note</a
+                        >
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="contact.html" class="header__nav-link"
+                            >Contact</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+            <button class="night-mode-toggle">🌙 Dark</button>
+        </header>
+
+        <footer role="contentinfo" id="footer">
+            <small>&copy; 2025 Hisatoshi Naganawa</small>
+        </footer>
+
+        <div id="node-1" role="presentation" aria-hidden="true"></div>
+
+        <main role="main" id="page1">
+            <section class="page">
+                <h1 class="page-title">About</h1>
+
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-image">👨‍🔬</div>
+                    <div class="profile-info">
+                        <h2>Hisatoshi Naganawa</h2>
+                        <p class="profile-title">
+                            Research Fellow @ Kobe University
+                        </p>
+                        <p class="profile-description">
+                            Research Fellow at Kobe University's Computing
+                            Science Center. Engaged in research on machine
+                            learning and computational science.
+                        </p>
+                        <div class="social-links">
+                            <a
+                                href="https://www.linkedin.com/in/hisatoshi-naganawa0331/?locale=ja"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="social-link"
+                                title="LinkedIn"
+                                >in</a
+                            >
+                            <a
+                                href="https://orcid.org/0009-0009-3023-8080"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="social-link"
+                                title="ORCID"
+                                >ORC</a
+                            >
+                            <a
+                                href="https://github.com/hisa0331"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="social-link"
+                                title="GitHub"
+                                >⭐</a
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Section -->
+                <div class="experience-section">
+                    <h3>Experience</h3>
+                    <div class="experience-item">
+                        <h4>Research Fellow</h4>
+                        <p class="period">
+                            Kobe University Computing Science Center | Present
+                        </p>
+                        <p>
+                            Conducting research and development in machine
+                            learning, writing original research papers, and
+                            presenting at international conferences.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="experience-section">
+                    <h3>Education</h3>
+                    <div class="experience-item">
+                        <h4>Doctor of Engineering</h4>
+                        <p class="period">
+                            Kobe University, Graduate School of Engineering |
+                            Completed
+                        </p>
+                        <p>Conducted research in computational science.</p>
+                    </div>
+                    <div class="experience-item">
+                        <h4>Master of Engineering</h4>
+                        <p class="period">
+                            Kobe University, Graduate School of Engineering |
+                            Completed
+                        </p>
+                        <p>
+                            Focused on applied mathematics and computational
+                            science.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Features/Skills -->
+                <div class="experience-section">
+                    <h3>Skills</h3>
+                    <div class="features">
+                        <div class="feature-item">
+                            <h4>🔬 Research Development</h4>
+                            <p>
+                                Specializing in machine learning and
+                                computational science, conducting academic
+                                research, writing papers, and presenting at
+                                international conferences.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>💻 Web Development</h4>
+                            <p>
+                                Creating user-centric websites using
+                                HTML/CSS/JavaScript with focus on responsive
+                                design and interactive experiences.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🎨 Design</h4>
+                            <p>
+                                From UI design to 3D visualization, implementing
+                                visually sophisticated and interactive website
+                                designs with modern aesthetics.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>📊 Data Analysis</h4>
+                            <p>
+                                Supporting decision-making through analysis and
+                                visualization of large-scale data with
+                                statistical insights.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Research Institutions -->
+                <div class="experience-section">
+                    <h3>Related Research Institutions</h3>
+                    <p style="margin: 0; line-height: 1.8">
+                        <a
+                            href="https://www.maritime.kobe-u.ac.jp/imarc/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="related-link"
+                        >
+                            International Maritime Research Center (IMARC)
+                        </a>
+                        <a
+                            href="https://www.picenter.gatech.edu/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="related-link"
+                        >
+                            The Pi Center
+                        </a>
+                        <a
+                            href="https://eng.unimelb.edu.au/industry/transport/research/freight-and-city-logistics"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="related-link"
+                        >
+                            Freight and City Logistics Research
+                        </a>
+                        <a
+                            href="https://www.ehirata.com/home"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="related-link"
+                        >
+                            E. Hirata Research
+                        </a>
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"
+            defer
+        ></script>
+        <script>
+            // DOMContentLoaded時にScriptを実行
+            document.addEventListener("DOMContentLoaded", function () {
+                /**
+                 * ナビゲーションリンクとスクロール管理
+                 */
+                (function initNavigation() {
+                    try {
+                        const navLinks = document.querySelectorAll(
+                            ".header__nav-link[data-target]",
+                        );
+
+                        if (!navLinks || navLinks.length === 0) {
+                            console.warn(
+                                "ナビゲーションリンクが見つかりません。",
+                            );
+                            return;
+                        }
+
+                        navLinks.forEach((link) => {
+                            link.addEventListener("click", (e) => {
+                                e.preventDefault();
+
+                                const target = link.dataset.target;
+                                if (!target) return;
+
+                                // active クラスの更新
+                                navLinks.forEach((a) =>
+                                    a.classList.remove("is-active"),
+                                );
+                                link.classList.add("is-active");
+
+                                // スムーススクロール
+                                const element = document.getElementById(target);
+                                if (element) {
+                                    element.scrollIntoView({
+                                        behavior: "smooth",
+                                    });
+                                }
+                            });
+                        });
+                    } catch (error) {
+                        console.error("ナビゲーション初期化エラー:", error);
+                    }
+                })();
+
+                /**
+                 * スクロール時のヘッダー/フッターテキスト色変更と
+                 * メインコンテンツの表示制御
+                 */
+                (function initScrollHandling() {
+                    try {
+                        const node = document.getElementById("node-1");
+                        const header = document.getElementById("header");
+                        const footer = document.getElementById("footer");
+                        const main = document.querySelector("main");
+
+                        if (!node || !header || !footer || !main) {
+                            console.warn("必要な要素が見つかりません。");
+                            return;
+                        }
+
+                        window.addEventListener("scroll", () => {
+                            const scrollY = window.scrollY;
+                            const fadeStart = 0;
+                            const fadeEnd = window.innerHeight * 0.9;
+
+                            // キャンバスの透明度制御
+                            const opacity = Math.max(
+                                0,
+                                1 -
+                                    (scrollY - fadeStart) /
+                                        (fadeEnd - fadeStart),
+                            );
+                            node.style.opacity = opacity;
+
+                            // ヘッダー/フッター色制御
+                            if (opacity < 0.5) {
+                                header.classList.add("light-text");
+                                footer.classList.add("light-text");
+                            } else {
+                                header.classList.remove("light-text");
+                                footer.classList.remove("light-text");
+                            }
+
+                            // メインコンテンツ表示制御
+                            const triggerScroll = window.innerHeight * 1.2;
+                            if (scrollY > triggerScroll) {
+                                main.classList.add("is-visible");
+                            } else {
+                                main.classList.remove("is-visible");
+                            }
+                        });
+                    } catch (error) {
+                        console.error("スクロール処理エラー:", error);
+                    }
+                })();
+
+                /**
+                 * Nightモード機能
+                 */
+                (function initNightMode() {
+                    try {
+                        const toggleBtn =
+                            document.querySelector(".night-mode-toggle");
+                        const body = document.body;
+                        const isDarkMode =
+                            localStorage.getItem("nightMode") === "true";
+
+                        if (isDarkMode) {
+                            body.classList.add("night-mode");
+                            if (toggleBtn) toggleBtn.textContent = "☀️ Light";
+                        }
+
+                        if (toggleBtn) {
+                            toggleBtn.addEventListener("click", () => {
+                                body.classList.toggle("night-mode");
+                                const isNow =
+                                    body.classList.contains("night-mode");
+                                localStorage.setItem("nightMode", isNow);
+                                toggleBtn.textContent = isNow
+                                    ? "☀️ Light"
+                                    : "🌙 Dark";
+                            });
+                        }
+                    } catch (error) {
+                        console.error("Nightモード初期化エラー:", error);
+                    }
+                })();
+            });
+
+            // p5.jsの初期化（loadイベント後）
+            window.addEventListener("load", function () {
+                /**
+                 * p5.js を使った3D地形表示
+                 */
+                (function initP5Sketch() {
+                    try {
+                        const scl = 30;
+                        const w = 1800;
+                        const h = 1500;
+                        let cols, rows;
+                        let terrain = [];
+                        let flying = 0;
+
+                        const sketch = (p) => {
+                            p.setup = () => {
+                                try {
+                                    const canvas = p.createCanvas(
+                                        p.windowWidth,
+                                        p.windowHeight,
+                                        p.WEBGL,
+                                    );
+                                    canvas.parent("node-1");
+                                    cols = Math.floor(w / scl);
+                                    rows = Math.floor(h / scl);
+                                    terrain = Array.from({ length: cols }, () =>
+                                        Array(rows).fill(0),
+                                    );
+                                } catch (error) {
+                                    console.error(
+                                        "p5.js セットアップエラー:",
+                                        error,
+                                    );
+                                }
+                            };
+
+                            p.draw = () => {
+                                try {
+                                    flying -= 0.01;
+                                    let yoff = flying;
+
+                                    for (let y = 0; y < rows; y++) {
+                                        let xoff = 0;
+                                        for (let x = 0; x < cols; x++) {
+                                            terrain[x][y] = p.map(
+                                                p.noise(xoff, yoff),
+                                                0,
+                                                1,
+                                                -100,
+                                                100,
+                                            );
+                                            xoff += 0.2;
+                                        }
+                                        yoff += 0.2;
+                                    }
+
+                                    // ダークモードの状態を確認
+                                    const isDarkMode =
+                                        document.body.classList.contains(
+                                            "night-mode",
+                                        );
+                                    const bgColor = isDarkMode
+                                        ? "#0d0d0d"
+                                        : "#6699CC";
+                                    const lineColor = isDarkMode
+                                        ? "#88bbee"
+                                        : "#FFFFCC";
+
+                                    p.background(bgColor);
+                                    p.stroke(lineColor);
+                                    p.noFill();
+
+                                    p.push();
+                                    p.rotateX(p.PI / 2.3);
+                                    p.rotateZ(0.1);
+                                    p.translate(-w / 2, -h / 2);
+
+                                    for (let y = 0; y < rows - 1; y++) {
+                                        p.beginShape(p.TRIANGLE_STRIP);
+                                        for (let x = 0; x < cols; x++) {
+                                            p.vertex(
+                                                x * scl,
+                                                y * scl,
+                                                terrain[x][y],
+                                            );
+                                            p.vertex(
+                                                x * scl,
+                                                (y + 1) * scl,
+                                                terrain[x][y + 1],
+                                            );
+                                        }
+                                        p.endShape();
+                                    }
+                                    p.pop();
+                                } catch (error) {
+                                    console.error("p5.js 描画エラー:", error);
+                                }
+                            };
+
+                            p.windowResized = () => {
+                                try {
+                                    if (
+                                        p.windowWidth > 0 &&
+                                        p.windowHeight > 0
+                                    ) {
+                                        p.resizeCanvas(
+                                            p.windowWidth,
+                                            p.windowHeight,
+                                        );
+                                    }
+                                } catch (error) {
+                                    console.error(
+                                        "p5.js ウィンドウリサイズエラー:",
+                                        error,
+                                    );
+                                }
+                            };
+                        };
+
+                        // p5.js が読み込まれているか確認
+                        if (typeof p5 !== "undefined") {
+                            console.log("p5.jsが読み込まれました");
+                            new p5(sketch);
+                        } else {
+                            console.warn("p5.js が読み込まれていません。");
+                        }
+                    } catch (error) {
+                        console.error("p5.js スケッチ初期化エラー:", error);
+                    }
+                })();
+            });
+        </script>
+    </body>
+</html>
