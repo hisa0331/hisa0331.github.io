@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Research interests of Hisatoshi Naganawa: Natural Language Processing and Mathematical Optimization Problems. Exploring advanced computational linguistics techniques and optimization algorithms for real-world applications."
+        />
+        <title>Interest - Hisatoshi Naganawa Portfolio</title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 60px 0 180px 0;
+                font-family: "EB Garamond", serif;
+                background-color: #f0f4f8;
+                color: #222;
+                min-height: 100vh;
+                height: 100%;
+                transition:
+                    background-color 0.3s ease,
+                    color 0.3s ease;
+            }
+
+            body.night-mode {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            /* ===== Spacer Blocks for Scrolling ===== */
+            body::before,
+            body::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 100%;
+                background: #f0f4f8;
+                z-index: 1;
+                pointer-events: none;
+                transition: background 0.3s ease;
+            }
+
+            body::before {
+                top: 0;
+                height: 60px;
+            }
+
+            body::after {
+                bottom: 0;
+                height: 180px;
+            }
+
+            body.night-mode::before,
+            body.night-mode::after {
+                background: #1a1a1a !important;
+            }
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 10px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 50px;
+                z-index: 1000;
+                background: transparent;
+                backdrop-filter: blur(10px);
+                color: #6699cc;
+                transition: all 0.3s ease;
+            }
+
+            body.night-mode header {
+                color: #88bbee;
+            }
+
+            .night-mode-toggle {
+                background: rgba(255, 255, 255, 0.95);
+                border: 2px solid #6699cc;
+                color: #6699cc;
+                padding: 8px 16px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                font-family: "EB Garamond", serif;
+                flex: 0 0 auto;
+            }
+
+            body.night-mode .night-mode-toggle {
+                background: rgba(26, 26, 26, 0.95);
+                border: 2px solid #88bbee;
+                color: #88bbee;
+            }
+
+            .night-mode-toggle:hover {
+                background-color: #6699cc;
+                color: #ffffcc;
+            }
+
+            body.night-mode .night-mode-toggle:hover {
+                background-color: #88bbee;
+                color: #1a1a1a;
+            }
+
+            .header__logo {
+                margin-left: 30px;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: inherit;
+                text-decoration: none;
+                user-select: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .header__logo:hover {
+                opacity: 0.8;
+            }
+
+            .header__nav {
+                display: flex;
+                gap: 30px;
+                list-style: none;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+                flex: 1;
+            }
+
+            .header__nav-item {
+                display: inline-block;
+            }
+
+            .header__nav-link {
+                font-size: 1.1rem;
+                font-weight: bold;
+                color: inherit;
+                text-decoration: none;
+                cursor: pointer;
+                padding: 6px 12px;
+                border-radius: 4px;
+                border: 2px solid transparent;
+                transition: all 0.3s ease;
+                display: block;
+            }
+
+            .header__nav-link:hover {
+                background-color: rgba(102, 153, 204, 0.1);
+            }
+
+            .header__nav-link[aria-current="page"],
+            .header__nav-link.is-active {
+                background-color: #6699cc;
+                color: #ffffcc;
+            }
+
+            /* ===== Main Content ===== */
+            main {
+                margin: 0 auto;
+                width: 100%;
+                padding: 80px 30px 180px;
+                background: #f0f4f8;
+                color: #222;
+                position: relative;
+                z-index: 10;
+            }
+
+            body.night-mode main {
+                background: #1a1a1a;
+                color: #e0e0e0;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+                margin: 0 0 15px;
+                font-weight: 700;
+                color: #333;
+                transition: color 0.3s ease;
+            }
+
+            body.night-mode .page-title {
+                color: #e0e0e0;
+            }
+
+            .page-subtitle {
+                font-size: 1.2rem;
+                color: #555;
+                line-height: 1.6;
+                margin: 0 0 40px;
+                transition: color 0.3s ease;
+            }
+
+            body.night-mode .page-subtitle {
+                color: #b0b0b0;
+            }
+
+            /* ===== Interest Section Styles ===== */
+            .interest-section {
+                margin-bottom: 40px;
+                padding: 25px;
+                background: white;
+                border-left: 4px solid #6699cc;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+                display: grid;
+                grid-template-columns: 1fr 350px;
+                gap: 25px;
+                align-items: start;
+            }
+
+            body.night-mode .interest-section {
+                background: #242424 !important;
+                border-left-color: #88bbee;
+            }
+
+            .interest-section h2 {
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin: 0 0 15px;
+                color: #333;
+                transition: color 0.3s ease;
+            }
+
+            body.night-mode .interest-section h2 {
+                color: #e0e0e0;
+            }
+
+            .interest-section p {
+                font-size: 1.15rem;
+                line-height: 1.8;
+                color: #555;
+                margin: 0 0 12px;
+            }
+
+            .interest-section p:last-child {
+                margin-bottom: 0;
+            }
+
+            body.night-mode .interest-section p {
+                color: #d0d0d0;
+            }
+
+            /* ===== Table of Contents ===== */
+            .table-of-contents {
+                background: white;
+                padding: 25px;
+                border-left: 4px solid #6699cc;
+                border-radius: 4px;
+                margin-bottom: 40px;
+                transition: background-color 0.3s ease;
+            }
+
+            body.night-mode .table-of-contents {
+                background: #242424 !important;
+                border-left-color: #88bbee;
+            }
+
+            .toc-title {
+                display: none;
+            }
+
+            .toc-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .toc-item {
+                margin-bottom: 12px;
+            }
+
+            .toc-item:last-child {
+                margin-bottom: 0;
+            }
+
+            .toc-link {
+                font-size: 1.1rem;
+                color: #6699cc;
+                text-decoration: none;
+                cursor: pointer;
+                padding: 6px 0;
+                display: block;
+                transition: all 0.3s ease;
+                border-radius: 4px;
+            }
+
+            .toc-link:hover {
+                background-color: rgba(102, 153, 204, 0.1);
+                padding-left: 8px;
+            }
+
+            body.night-mode .toc-link {
+                color: #88bbee;
+            }
+
+            body.night-mode .toc-link:hover {
+                background-color: rgba(136, 187, 238, 0.1);
+            }
+
+            .interest-section ul {
+                list-style: none;
+                padding-left: 20px;
+                margin: 15px 0;
+            }
+
+            .interest-section li {
+                font-size: 1.15rem;
+                line-height: 1.8;
+                color: #555;
+                margin-bottom: 10px;
+                position: relative;
+                padding-left: 20px;
+            }
+
+            .interest-section li::before {
+                content: "▸";
+                position: absolute;
+                left: 0;
+                color: #6699cc;
+                font-weight: bold;
+            }
+
+            body.night-mode .interest-section li {
+                color: #d0d0d0;
+            }
+
+            body.night-mode .interest-section li::before {
+                color: #88bbee;
+            }
+
+            .interest-content {
+                grid-column: 1;
+            }
+
+            .interest-chart {
+                grid-column: 2;
+                grid-row: 1 / span 7;
+                position: relative;
+                height: 300px;
+            }
+
+            .interest-chart canvas {
+                max-width: 100%;
+                max-height: 100%;
+            }
+                color: #6699cc;
+                font-weight: 600;
+            }
+
+            body.night-mode .highlight {
+                color: #88bbee;
+            }
+
+            /* ===== Chart Styles ===== */
+            .chart-container {
+                position: relative;
+                width: 100%;
+                max-width: 600px;
+                margin: 30px auto;
+                padding: 25px;
+                background: white;
+                border-radius: 4px;
+                transition: background-color 0.5s ease-in-out;
+            }
+
+            body.night-mode .chart-container {
+                background: #242424;
+            }
+
+            .chart-title {
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            body.night-mode .chart-title {
+                color: #e0e0e0;
+            }
+
+            /* ===== Footer ===== */
+            footer {
+                text-align: center;
+                padding: 10px 20px;
+                font-size: 0.7rem;
+                color: #6699cc;
+                background: transparent;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                backdrop-filter: blur(10px);
+                z-index: 500;
+                transition: color 0.3s ease;
+            }
+
+            body.night-mode footer {
+                color: #88bbee;
+            }
+
+            /* ===== Responsive Design ===== */
+            @media (max-width: 768px) {
+                header {
+                    flex-direction: column;
+                    gap: 15px;
+                    padding: 15px 20px;
+                }
+
+                .header__logo {
+                    margin-left: 0;
+                    width: 100%;
+                    font-size: 1.2rem;
+                }
+
+                .header__nav {
+                    margin: 0;
+                    gap: 15px;
+                    width: 100%;
+                    justify-content: center;
+                    margin-right: 0;
+                }
+
+                .header__nav-link {
+                    font-size: 0.9rem;
+                    padding: 6px 10px;
+                }
+
+                main {
+                    margin: 180px auto 100px;
+                    padding: 20px;
+                }
+
+                .page-title {
+                    font-size: 1.8rem;
+                }
+
+                .page-subtitle {
+                    font-size: 1rem;
+                }
+
+                .interest-section {
+                    padding: 20px;
+                    margin-bottom: 25px;
+                }
+
+                .interest-section h2 {
+                    font-size: 1.3rem;
+                }
+
+                .interest-section p,
+                .interest-section li {
+                    font-size: 1rem;
+                }
+
+                footer {
+                    padding: 20px 10px;
+                    font-size: 0.65rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                header {
+                    padding: 10px 15px;
+                }
+
+                .header__logo {
+                    font-size: 1rem;
+                    margin-bottom: 10px;
+                }
+
+                .header__nav {
+                    gap: 10px;
+                }
+
+                .header__nav-link {
+                    font-size: 0.8rem;
+                    padding: 5px 8px;
+                }
+
+                main {
+                    margin: 160px auto 80px;
+                    padding: 15px;
+                }
+
+                .page-title {
+                    font-size: 1.5rem;
+                    margin-bottom: 10px;
+                }
+
+                .page-subtitle {
+                    font-size: 0.9rem;
+                    line-height: 1.5;
+                    margin-bottom: 20px;
+                }
+
+                .interest-section {
+                    padding: 15px;
+                    margin-bottom: 20px;
+                    border-left-width: 3px;
+                }
+
+                .interest-section h2 {
+                    font-size: 1.2rem;
+                    margin-bottom: 12px;
+                }
+
+                .interest-section p,
+                .interest-section li {
+                    font-size: 0.95rem;
+                    line-height: 1.6;
+                }
+
+                footer {
+                    padding: 15px 10px;
+                    font-size: 0.6rem;
+                }
+
+                .night-mode-toggle {
+                    padding: 6px 12px;
+                    font-size: 0.8rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header role="banner">
+            <a href="index.html" class="header__logo">Hisatoshi Naganawa</a>
+            <nav role="navigation" aria-label="Main navigation">
+                <ul class="header__nav">
+                    <li class="header__nav-item">
+                        <a href="index.html" class="header__nav-link">About</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="works.html" class="header__nav-link">Works</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a
+                            href="https://note.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="header__nav-link"
+                            >Note</a
+                        >
+                    </li>
+                    <li class="header__nav-item">
+                        <a
+                            href="interest.html"
+                            class="header__nav-link is-active"
+                            aria-current="page"
+                            >Interest</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+            <button class="night-mode-toggle">🌙 Dark</button>
+        </header>
+
+        <main role="main">
+            <h1 class="page-title">Research Interests</h1>
+            <p class="page-subtitle">
+                Passionate about advancing computational linguistics and
+                optimization science to address complex real-world challenges.
+            </p>
+
+            <!-- Table of Contents -->
+            <nav
+                class="table-of-contents"
+                role="navigation"
+                aria-label="Research interests table of contents"
+            >
+                <h2 class="toc-title">Contents</h2>
+                <ul class="toc-list">
+                    <li class="toc-item">
+                        <a href="#nlp-section" class="toc-link"
+                            >Natural Language Processing (NLP)</a
+                        >
+                    </li>
+                    <li class="toc-item">
+                        <a href="#optimization-section" class="toc-link"
+                            >Mathematical Optimization Problems</a
+                        >
+                    </li>
+                    <li class="toc-item">
+                        <a href="#intersection-section" class="toc-link"
+                            >The Intersection of NLP & Optimization</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Natural Language Processing Section -->
+            <section class="interest-section" id="nlp-section">
+                <div class="interest-content">
+                    <h2>Natural Language Processing (NLP)</h2>
+                    <p>
+                        Natural Language Processing represents a fascinating
+                        intersection of linguistics, computer science, and
+                        artificial intelligence. My research focuses on
+                        leveraging
+                        <span class="highlight">advanced NLP techniques</span>
+                        to extract meaningful insights from textual data and
+                        enable machines to understand and generate human
+                        language with greater sophistication.
+                    </p>
+                    <p>Key areas of interest include:</p>
+                    <ul>
+                        <li>
+                            <span class="highlight">Semantic Analysis</span> –
+                            Understanding the deeper meaning of text
+                        </li>
+                        <li>
+                            <span class="highlight">Topic Modeling</span> –
+                            Discovering latent topics and themes
+                        </li>
+                        <li>
+                            <span class="highlight">Sentiment Analysis</span> –
+                            Extracting emotional nuance and opinion
+                        </li>
+                        <li>
+                            <span class="highlight"
+                                >Machine Learning for Text</span
+                            >
+                            – Developing robust neural architectures
+                        </li>
+                        <li>
+                            <span class="highlight">Knowledge Extraction</span>
+                            – Automatically identifying entities
+                        </li>
+                        <li>
+                            <span class="highlight"
+                                >Real-world Applications</span
+                            >
+                            – Applying NLP to logistics and supply chain
+                        </li>
+                    </ul>
+                </div>
+                <div class="interest-chart">
+                    <canvas id="nlpChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Mathematical Optimization Section -->
+            <section class="interest-section" id="optimization-section">
+                <div class="interest-content">
+                    <h2>Mathematical Optimization Problems</h2>
+                    <p>
+                        Mathematical optimization lies at the core of solving
+                        complex decision-making problems across industries. I am
+                        deeply interested in developing and applying
+                        <span class="highlight"
+                            >sophisticated optimization algorithms</span
+                        >
+                        to discover efficient solutions to combinatorial,
+                        linear, and nonlinear problems.
+                    </p>
+                    <p>My research encompasses:</p>
+                    <ul>
+                        <li>
+                            <span class="highlight">Linear Programming</span> –
+                            Optimizing resource allocation
+                        </li>
+                        <li>
+                            <span class="highlight">Network Optimization</span>
+                            – Solving vehicle routing and facility location
+                        </li>
+                        <li>
+                            <span class="highlight"
+                                >Combinatorial Optimization</span
+                            >
+                            – Tackling NP-hard problems
+                        </li>
+                        <li>
+                            <span class="highlight"
+                                >Reinforcement Learning for Optimization</span
+                            >
+                            – Training AI agents
+                        </li>
+                        <li>
+                            <span class="highlight"
+                                >Multi-Objective Optimization</span
+                            >
+                            – Balancing competing objectives
+                        </li>
+                        <li>
+                            <span class="highlight"
+                                >Supply Chain Optimization</span
+                            >
+                            – Applying techniques to logistics systems
+                        </li>
+                    </ul>
+                </div>
+                <div class="interest-chart">
+                    <canvas id="optimizationChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Intersection Section -->
+            <section class="interest-section" id="intersection-section">
+                <div class="interest-content">
+                    <h2>The Intersection of NLP & Optimization</h2>
+                    <p>
+                        The most exciting research opportunities emerge at the
+                        intersection of these two domains. By combining
+                        <span class="highlight"
+                            >natural language processing with mathematical
+                            optimization</span
+                        >, I aim to:
+                    </p>
+                    <ul>
+                        <li>
+                            Extract insights from unstructured text data and
+                            convert them into structured decision-making
+                            problems
+                        </li>
+                        <li>
+                            Analyze social discourse and sentiment to inform
+                            strategy
+                        </li>
+                        <li>
+                            Develop intelligent systems that understand language
+                            requirements
+                        </li>
+                        <li>
+                            Create knowledge management systems leveraging both
+                            semantic and computational efficiency
+                        </li>
+                    </ul>
+                </div>
+                <div class="interest-chart">
+                    <canvas id="intersectionChart"></canvas>
+                </div>
+            </section>
+        </main>
+
+        <footer role="contentinfo">
+            <small>&copy; 2026 Hisatoshi Naganawa. All rights reserved.</small>
+        </footer>
+
+        <script>
+            /**
+             * Nightモード機能
+             */
+            (function initNightMode() {
+                try {
+                    const toggleBtn =
+                        document.querySelector(".night-mode-toggle");
+                    const body = document.body;
+                    const isDarkMode =
+                        localStorage.getItem("nightMode") === "true";
+
+                    if (isDarkMode) {
+                        body.classList.add("night-mode");
+                        if (toggleBtn) toggleBtn.textContent = "☀️ Light";
+                    }
+
+                    if (toggleBtn) {
+                        toggleBtn.addEventListener("click", () => {
+                            body.classList.toggle("night-mode");
+                            const isNow = body.classList.contains("night-mode");
+                            localStorage.setItem("nightMode", isNow);
+                            toggleBtn.textContent = isNow
+                                ? "☀️ Light"
+                                : "🌙 Dark";
+                            updateCharts();
+                        });
+                    }
+                } catch (error) {
+                    console.error("Night mode initialization error:", error);
+                }
+            })();
+
+            /**
+             * Navigation link active state management
+             */
+            (function initNavigation() {
+                try {
+                    const navLinks =
+                        document.querySelectorAll(".header__nav-link");
+
+                    if (!navLinks || navLinks.length === 0) {
+                        console.warn("Navigation links not found.");
+                        return;
+                    }
+
+                    const currentPath = window.location.pathname;
+                    const currentFileName =
+                        currentPath.split("/").pop() || "index.html";
+
+                    navLinks.forEach((link) => {
+                        const href = link.getAttribute("href");
+
+                        if (!href) return;
+
+                        if (
+                            link.getAttribute("target") === "_blank" ||
+                            href.startsWith("http")
+                        ) {
+                            return;
+                        }
+
+                        const linkFileName =
+                            href.split("/").pop() || "index.html";
+                        if (
+                            linkFileName === currentFileName ||
+                            (currentFileName === "" &&
+                                linkFileName === "index.html")
+                        ) {
+                            link.classList.add("is-active");
+                            link.setAttribute("aria-current", "page");
+                        } else {
+                            link.classList.remove("is-active");
+                            link.removeAttribute("aria-current");
+                        }
+                    });
+                } catch (error) {
+                    console.error("Navigation initialization error:", error);
+                }
+            })();
+
+            // Chart instances
+            let nlpChart, optimizationChart, intersectionChart;
+
+            /**
+             * Initialize NLP Chart - Horizontal Bar Chart
+             */
+            function initNLPChart() {
+                const ctx = document.getElementById("nlpChart");
+                if (!ctx) return;
+
+                const isDarkMode =
+                    document.body.classList.contains("night-mode");
+                const textColor = isDarkMode ? "#e0e0e0" : "#333";
+                const accentColor = isDarkMode ? "#88bbee" : "#6699cc";
+
+                nlpChart = new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: [
+                            "Semantic Analysis",
+                            "Topic Modeling",
+                            "Sentiment Analysis",
+                            "Machine Learning",
+                            "Knowledge Extraction",
+                        ],
+                        datasets: [
+                            {
+                                label: "Expertise Level",
+                                data: [95, 88, 90, 92, 85],
+                                backgroundColor: accentColor,
+                                borderColor: accentColor,
+                                borderWidth: 2,
+                            },
+                        ],
+                    },
+                    options: {
+                        indexAxis: "y",
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: { color: textColor },
+                                grid: { color: isDarkMode ? "#444" : "#ddd" },
+                            },
+                            y: {
+                                ticks: { color: textColor },
+                            },
+                        },
+                    },
+                });
+            }
+
+            /**
+             * Initialize Optimization Chart - Doughnut Chart
+             */
+            function initOptimizationChart() {
+                const ctx = document.getElementById("optimizationChart");
+                if (!ctx) return;
+
+                const isDarkMode =
+                    document.body.classList.contains("night-mode");
+                const textColor = isDarkMode ? "#e0e0e0" : "#333";
+                const colors = [
+                    isDarkMode ? "#88bbee" : "#6699cc",
+                    isDarkMode ? "#7aa8d4" : "#7fa8d8",
+                    isDarkMode ? "#6897ba" : "#5688c0",
+                    isDarkMode ? "#5786a0" : "#4477b8",
+                    isDarkMode ? "#4675a0" : "#3366ac",
+                ];
+
+                optimizationChart = new Chart(ctx, {
+                    type: "doughnut",
+                    data: {
+                        labels: [
+                            "Linear Programming",
+                            "Network Optimization",
+                            "Combinatorial",
+                            "Multi-Objective",
+                            "Reinforcement Learning",
+                        ],
+                        datasets: [
+                            {
+                                data: [20, 20, 20, 20, 20],
+                                backgroundColor: colors,
+                                borderColor: isDarkMode ? "#242424" : "#fff",
+                                borderWidth: 2,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: "right",
+                                labels: {
+                                    color: textColor,
+                                    font: { size: 11 },
+                                },
+                            },
+                        },
+                    },
+                });
+            }
+
+            /**
+             * Initialize Intersection Chart - Scatter Plot
+             */
+            function initIntersectionChart() {
+                const ctx = document.getElementById("intersectionChart");
+                if (!ctx) return;
+
+                const isDarkMode =
+                    document.body.classList.contains("night-mode");
+                const textColor = isDarkMode ? "#e0e0e0" : "#333";
+                const color1 = isDarkMode ? "#88bbee" : "#6699cc";
+                const color2 = isDarkMode ? "#99ccee" : "#88bbdd";
+
+                intersectionChart = new Chart(ctx, {
+                    type: "scatter",
+                    data: {
+                        datasets: [
+                            {
+                                label: "NLP-focused",
+                                data: [
+                                    { x: 90, y: 40 },
+                                    { x: 85, y: 35 },
+                                ],
+                                backgroundColor: color1,
+                                borderWidth: 2,
+                                pointRadius: 8,
+                            },
+                            {
+                                label: "Optimization-focused",
+                                data: [
+                                    { x: 40, y: 90 },
+                                    { x: 35, y: 85 },
+                                ],
+                                backgroundColor: color2,
+                                borderWidth: 2,
+                                pointRadius: 8,
+                            },
+                            {
+                                label: "Intersection",
+                                data: [{ x: 70, y: 70 }],
+                                backgroundColor: isDarkMode
+                                    ? "#ffaa88"
+                                    : "#ff9966",
+                                borderWidth: 2,
+                                pointRadius: 12,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: textColor,
+                                    font: { size: 11 },
+                                },
+                            },
+                        },
+                        scales: {
+                            x: {
+                                min: 0,
+                                max: 100,
+                                ticks: { color: textColor },
+                                grid: { color: isDarkMode ? "#444" : "#ddd" },
+                                title: {
+                                    display: true,
+                                    text: "NLP Focus",
+                                    color: textColor,
+                                },
+                            },
+                            y: {
+                                min: 0,
+                                max: 100,
+                                ticks: { color: textColor },
+                                grid: { color: isDarkMode ? "#444" : "#ddd" },
+                                title: {
+                                    display: true,
+                                    text: "Optimization Focus",
+                                    color: textColor,
+                                },
+                            },
+                        },
+                    },
+                });
+            }
+
+            /**
+             * Update all charts when theme changes
+             */
+            function updateCharts() {
+                setTimeout(() => {
+                    if (nlpChart) nlpChart.destroy();
+                    if (optimizationChart) optimizationChart.destroy();
+                    if (intersectionChart) intersectionChart.destroy();
+                    initNLPChart();
+                    initOptimizationChart();
+                    initIntersectionChart();
+                }, 100);
+            }
+
+            // Initialize charts on page load
+            document.addEventListener("DOMContentLoaded", () => {
+                initNLPChart();
+                initOptimizationChart();
+                initIntersectionChart();
+            });
+        </script>
+    </body>
+</html>

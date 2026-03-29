@@ -9,6 +9,10 @@
         />
         <title>Hisatoshi Naganawa Portfolio</title>
         <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>"
+        />
+        <link
             href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
             rel="stylesheet"
         />
@@ -48,8 +52,8 @@
                 overflow-x: hidden;
                 color: var(--text-color);
                 transition:
-                    background-color 0.3s ease,
-                    color 0.3s ease;
+                    background-color 0.5s ease-in-out,
+                    color 0.5s ease-in-out;
             }
 
             /* ===== Header & Navigation ===== */
@@ -198,7 +202,7 @@
                 max-width: 900px;
                 margin: 150vh auto 0;
                 padding: 40px;
-                background: #f0f4f8;
+                background: transparent;
                 color: #222;
                 opacity: 0;
                 transition: opacity 1s ease;
@@ -207,7 +211,6 @@
             }
 
             body.night-mode main {
-                background: #1a1a1a;
                 color: #e0e0e0;
             }
 
@@ -282,7 +285,7 @@
 
             .profile-info h2 {
                 margin: 0 0 10px;
-                font-size: 1.8rem;
+                font-size: 2.2rem;
                 color: #333;
             }
 
@@ -292,7 +295,7 @@
 
             .profile-title {
                 color: #6699cc;
-                font-size: 1.1rem;
+                font-size: 1.5rem;
                 font-weight: 600;
                 margin-bottom: 15px;
             }
@@ -361,7 +364,7 @@
             }
 
             .experience-section h3 {
-                font-size: 1.3rem;
+                font-size: 1.6rem;
                 color: #333;
                 border-bottom: 2px solid #6699cc;
                 padding-bottom: 10px;
@@ -385,7 +388,7 @@
 
             .experience-item h4 {
                 margin: 0 0 5px;
-                font-size: 1rem;
+                font-size: 1.2rem;
                 color: #333;
             }
 
@@ -395,7 +398,7 @@
 
             .experience-item .period {
                 color: #999;
-                font-size: 0.9rem;
+                font-size: 1.1rem;
                 margin-bottom: 5px;
             }
 
@@ -407,10 +410,36 @@
                 margin: 5px 0 0;
                 color: #555;
                 line-height: 1.6;
+                font-size: 1.05rem;
             }
 
             body.night-mode .experience-item p {
                 color: #d0d0d0;
+            }
+
+            .related-link {
+                color: #6699cc;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .related-link:hover {
+                text-decoration: underline;
+                opacity: 0.8;
+            }
+
+            body.night-mode .related-link {
+                color: #88bbee;
+            }
+
+            .related-bullet {
+                color: #6699cc;
+                margin-right: 8px;
+                font-weight: bold;
+            }
+
+            body.night-mode .related-bullet {
+                color: #88bbee;
             }
 
             /* ===== Features ===== */
@@ -436,7 +465,7 @@
             .feature-item h4 {
                 margin: 0 0 10px;
                 color: #6699cc;
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
             body.night-mode .feature-item h4 {
@@ -446,7 +475,7 @@
             .feature-item p {
                 margin: 0;
                 color: #555;
-                font-size: 0.95rem;
+                font-size: 1.1rem;
                 line-height: 1.6;
             }
 
@@ -470,7 +499,7 @@
                 }
 
                 .profile-info h2 {
-                    font-size: 1.5rem;
+                    font-size: 1.7rem;
                 }
 
                 .features {
@@ -478,7 +507,7 @@
                 }
 
                 .experience-section h3 {
-                    font-size: 1.1rem;
+                    font-size: 1.3rem;
                 }
             }
 
@@ -495,7 +524,7 @@
                 }
 
                 .profile-info h2 {
-                    font-size: 1.3rem;
+                    font-size: 1.5rem;
                 }
 
                 .social-links {
@@ -503,7 +532,7 @@
                 }
 
                 .experience-section h3 {
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                     margin-bottom: 15px;
                 }
 
@@ -577,8 +606,8 @@
                         >
                     </li>
                     <li class="header__nav-item">
-                        <a href="contact.html" class="header__nav-link"
-                            >Contact</a
+                        <a href="interest.html" class="header__nav-link"
+                            >Interest</a
                         >
                     </li>
                 </ul>

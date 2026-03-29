@@ -5,9 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Research achievements of Hisatoshi Naganawa including peer-reviewed publications, conference proceedings, and academic awards."
+            content="Research achievements of Hisatoshi Naganawa including peer-reviewed publications, international conference proceedings, domestic conference presentations, and academic awards."
         />
         <title>Works - Hisatoshi Naganawa Portfolio</title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>"
+        />
         <link
             href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
             rel="stylesheet"
@@ -27,8 +31,8 @@
                 min-height: 100vh;
                 height: 100%;
                 transition:
-                    background-color 0.3s ease,
-                    color 0.3s ease;
+                    background-color 0.5s ease-in-out,
+                    color 0.5s ease-in-out;
             }
 
             body.night-mode {
@@ -50,7 +54,7 @@
 
             body::before {
                 top: 0;
-                height: 60px;
+                height: 50vh;
             }
 
             body::after {
@@ -174,7 +178,7 @@
                 display: grid;
                 grid-template-columns: 280px 1fr;
                 grid-auto-rows: max-content;
-                gap: 40px 40px;
+                gap: 20px 40px;
                 position: relative;
                 z-index: 10;
             }
@@ -200,7 +204,7 @@
 
             .page-subtitle {
                 margin: 0 0 40px;
-                font-size: 1.1rem;
+                font-size: 1.4rem;
                 color: #666;
                 line-height: 1.6;
                 grid-column: 1 / -1;
@@ -316,13 +320,16 @@
             /* ===== Achievements Section ===== */
             /* Achievements Sections */
             .achievements-section {
-                margin-bottom: 40px;
+                margin-bottom: 10px;
                 padding: 30px 40px;
                 background: white;
                 border-bottom: 1px solid #ddd;
                 border-radius: 4px;
                 grid-column: 2;
                 scroll-margin-top: 120px;
+                transition:
+                    background-color 0.5s ease-in-out,
+                    border-color 0.5s ease-in-out;
             }
 
             body.night-mode .achievements-section {
@@ -336,7 +343,7 @@
             }
 
             .section-title {
-                font-size: 1.3rem;
+                font-size: 1.6rem;
                 font-weight: 700;
                 margin-bottom: 20px;
                 color: #333;
@@ -372,7 +379,7 @@
                 background-color: #fafbfc;
                 border-radius: 4px;
                 line-height: 1.7;
-                font-size: 0.95rem;
+                font-size: 1.15rem;
                 transition: background-color 0.3s ease;
             }
 
@@ -474,7 +481,7 @@
                 color: #6699cc;
                 text-decoration: none;
                 padding: 8px 0;
-                transition: all 0.3s ease;
+                transition: all 0.5s ease-in-out;
                 border-left: 3px solid transparent;
                 padding-left: 10px;
             }
@@ -539,7 +546,7 @@
 
                 .page-subtitle {
                     padding: 0 20px;
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                 }
 
                 .table-of-contents {
@@ -547,25 +554,25 @@
                     grid-row: auto;
                     position: static;
                     top: auto;
-                    margin-bottom: 30px;
+                    margin-bottom: 10px;
                     padding: 15px;
                 }
 
                 .achievements-section {
                     grid-column: 1;
-                    padding: 20px;
-                    margin-bottom: 20px;
+                    padding: 10px;
+                    margin-bottom: 10px;
                 }
 
                 .section-title {
-                    font-size: 1.1rem;
+                    font-size: 1.2rem;
                     margin-bottom: 15px;
                 }
 
                 .achievement-item {
                     margin-bottom: 12px;
                     padding: 10px;
-                    font-size: 0.9rem;
+                    font-size: 1rem;
                 }
 
                 header {
@@ -592,7 +599,7 @@
     <body>
         <header role="banner">
             <a href="index.html" class="header__logo">Hisatoshi Naganawa</a>
-            <nav role="navigation" aria-label="メインナビゲーション">
+            <nav role="navigation" aria-label="Main navigation">
                 <ul class="header__nav">
                     <li class="header__nav-item">
                         <a href="index.html" class="header__nav-link">About</a>
@@ -615,8 +622,8 @@
                         >
                     </li>
                     <li class="header__nav-item">
-                        <a href="contact.html" class="header__nav-link"
-                            >Contact</a
+                        <a href="interest.html" class="header__nav-link"
+                            >Interest</a
                         >
                     </li>
                 </ul>
@@ -625,58 +632,52 @@
         </header>
 
         <main role="main">
-            <h1 class="page-title">研究業績</h1>
+            <h1 class="page-title">Research Achievements</h1>
             <p class="page-subtitle">
-                査読済みの公刊論文、国際会議プロシーディング、国内会議発表、および学術賞を掲載しています。
+                A comprehensive collection of peer-reviewed publications,
+                international conference proceedings, domestic conference
+                presentations, and academic awards.
             </p>
 
-            <!-- 目次 -->
+            <!-- Table of Contents -->
             <nav
                 class="table-of-contents"
                 role="navigation"
-                aria-label="業績ページの目次"
+                aria-label="Research achievements table of contents"
             >
-                <h2 class="toc-title">目次</h2>
+                <h2 class="toc-title">Contents</h2>
                 <ul class="toc-list">
                     <li class="toc-item">
                         <a href="#published-papers" class="toc-link"
-                            >公刊学術論文（査読済み）</a
-                        >
-                    </li>
-                    <li class="toc-item">
-                        <a href="#under-review" class="toc-link"
-                            >査読中の論文</a
-                        >
-                    </li>
-                    <li class="toc-item">
-                        <a href="#in-preparation" class="toc-link"
-                            >執筆中の論文</a
+                            >Peer-Reviewed Publications</a
                         >
                     </li>
                     <li class="toc-item">
                         <a href="#international-proceedings" class="toc-link"
-                            >国際会議プロシーディング（査読済み）</a
+                            >International Conference Proceedings</a
                         >
                     </li>
                     <li class="toc-item">
                         <a href="#domestic-proceedings" class="toc-link"
-                            >国内会議プロシーディング</a
+                            >Domestic Conference Presentations</a
                         >
                     </li>
                     <li class="toc-item">
-                        <a href="#awards" class="toc-link">学術賞・奨学金</a>
+                        <a href="#awards" class="toc-link"
+                            >Awards and Scholarships</a
+                        >
                     </li>
                     <li class="toc-item">
                         <a href="#other-activities" class="toc-link"
-                            >その他の学術活動</a
+                            >Other Academic Activities</a
                         >
                     </li>
                 </ul>
             </nav>
 
-            <!-- 公刊学術論文 -->
+            <!-- Peer-Reviewed Publications -->
             <section class="achievements-section" id="published-papers">
-                <h2 class="section-title">公刊学術論文（査読済み）</h2>
+                <h2 class="section-title">Peer-Reviewed Publications</h2>
                 <ul class="achievements-list">
                     <li class="achievement-item">
                         <span class="achievement-authors"
@@ -779,126 +780,18 @@
                             >Strategic Directions in Maritime Transport:
                             Applications of Decision-Making Methods and
                             Algorithms</span
-                        >, Springer Nature, 2026年 (掲載予定)
+                        >, Springer Nature, 2026 (Forthcoming)
                     </li>
                 </ul>
             </section>
 
-            <!-- 査読中の論文 -->
-            <section class="achievements-section" id="under-review">
-                <h2 class="section-title">査読中の論文</h2>
-                <ul class="achievements-list">
-                    <li class="achievement-item">
-                        <span class="achievement-authors"
-                            >Enna Hirata; Masoud Kahalimoghadam; Russell G.
-                            Thompson; Greg Foliente; Hisatoshi Naganawa</span
-                        >,
-                        <span class="achievement-title"
-                            >"Trade-War Spillovers and Resilience in
-                            Japan-Australia Container Shipping Networks: A
-                            Schedule-Based Simulation of Rerouting
-                            Cascades"</span
-                        >,
-                        <span class="achievement-journal"
-                            >Transportation Research Part E: Logistics and
-                            Transportation Review</span
-                        >, Elsevier (査読中)
-                    </li>
-                    <li class="achievement-item">
-                        <span class="achievement-authors"
-                            >Hisatoshi Naganawa; Enna Hirata; Kazuyo
-                            Yamaji</span
-                        >,
-                        <span class="achievement-title"
-                            >"Quantifying the multidimensional structure of
-                            social responses to rice crop residue burning in
-                            India: A computational linguistics analysis"</span
-                        >,
-                        <span class="achievement-journal"
-                            >International Journal of Environmental
-                            Research</span
-                        >, Springer Nature (査読中)
-                    </li>
-                    <li class="achievement-item">
-                        <span class="achievement-authors"
-                            >Hisatoshi Naganawa; Enna Hirata; Kazuyo
-                            Yamaji</span
-                        >,
-                        <span class="achievement-title"
-                            >"Chronological Changes in Discourse on Rice Crop
-                            Residue Burning in India: A Cross-Media Topic
-                            Analysis"</span
-                        >,
-                        <span class="achievement-journal"
-                            >International Journal of Environmental
-                            Research</span
-                        >, Springer Nature (査読中)
-                    </li>
-                    <li class="achievement-item">
-                        <span class="achievement-authors"
-                            >Hisatoshi Naganawa; Enna Hirata; Kazuyo
-                            Yamaji</span
-                        >,
-                        <span class="achievement-title"
-                            >"Spatiotemporal Dynamics of Public Sentiment Toward
-                            Rice Crop Residue Burning and Air Pollution in
-                            India: An Analysis Based on YouTube Data and Air
-                            Quality Indicators"</span
-                        >,
-                        <span class="achievement-journal"
-                            >Computers, Environment and Urban Systems</span
-                        >, Elsevier (査読中)
-                    </li>
-                    <li class="achievement-item">
-                        <span class="achievement-authors"
-                            >Hisatoshi Naganawa</span
-                        >,
-                        <span class="achievement-title"
-                            >"Comparative Study on Public Opinion Formation
-                            Regarding Logistics Issues: Through Analysis of
-                            Video Content and Comments in Japan and South
-                            Korea"</span
-                        >,
-                        <span class="achievement-journal"
-                            >New Media & Society</span
-                        >, Sage Publishing (査読中)
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 執筆中の論文 -->
-            <section class="achievements-section" id="in-preparation">
-                <h2 class="section-title">執筆中の論文</h2>
-                <ul class="achievements-list">
-                    <li class="achievement-item">
-                        <span class="achievement-authors"
-                            >Hisatoshi Naganawa</span
-                        >,
-                        <span class="achievement-title"
-                            >"Optimization and Resilience Assessment of
-                            Multi-Agent Delivery Using Evolutionary Neural
-                            Networks in the context of Physical Internet"</span
-                        >
-                    </li>
-                    <li class="achievement-item">
-                        <span class="achievement-authors"
-                            >Hisatoshi Naganawa</span
-                        >,
-                        <span class="achievement-title"
-                            >"Piracy and Economic Factors in the Malacca Strait:
-                            Analysis of Crime Types using Topic Models"</span
-                        >
-                    </li>
-                </ul>
-            </section>
-
-            <!-- 国際会議プロシーディング -->
+            <!-- International Conference Proceedings -->
             <section
                 class="achievements-section"
                 id="international-proceedings"
             >
                 <h2 class="section-title">
-                    国際会議プロシーディング（査読済み）
+                    International Conference Proceedings
                 </h2>
                 <ul class="achievements-list">
                     <li class="achievement-item">
@@ -910,7 +803,8 @@
                             Logistical Hubs and Routing in the Context of the
                             Physical Internet - A Case Study from Japan"</span
                         >, Proceedings of 10th International Physical Internet
-                        Conference, Savannah, USA, 2024年5月29日 (査読済み).
+                        Conference, Savannah, USA, 2024年5月29日
+                        (Peer-Reviewed).
                         <a
                             href="https://doi.org/10.35090/gatech/11084"
                             target="_blank"
@@ -939,7 +833,8 @@
                             New Way to Review and Integrate Existing
                             Research"</span
                         >, Proceedings of 11th International Physical Internet
-                        Conference, Hong Kong, China, 2025年6月18日 (査読済み).
+                        Conference, Hong Kong, China, 2025年6月18日
+                        (Peer-Reviewed).
                         <a
                             href="https://doi.org/10.35090/gatech/13249"
                             target="_blank"
@@ -958,14 +853,14 @@
                             Networks in the context of Physical Internet"</span
                         >, Proceedings of 12th International Physical Internet
                         Conference, Bordeaux and Albi, France, 2026年6月5日
-                        (査読済み、掲載予定).
+                        (Peer-Reviewed).
                     </li>
                 </ul>
             </section>
 
-            <!-- 国内会議プロシーディング -->
+            <!-- Domestic Conference Presentations -->
             <section class="achievements-section" id="domestic-proceedings">
-                <h2 class="section-title">国内会議プロシーディング</h2>
+                <h2 class="section-title">Domestic Conference Presentations</h2>
                 <ul class="achievements-list">
                     <li class="achievement-item">
                         <span class="achievement-authors"
@@ -1008,37 +903,39 @@
                 </ul>
             </section>
 
-            <!-- 賞罰 -->
+            <!-- Awards and Scholarships -->
             <section class="achievements-section" id="awards">
-                <h2 class="section-title">学術賞・奨学金</h2>
+                <h2 class="section-title">Awards and Scholarships</h2>
                 <ul class="achievements-list">
                     <li class="achievement-item">
-                        キーエンス財団 応援給付金 給付
+                        Keyence Foundation Grant (2024)
                     </li>
                     <li class="achievement-item">
-                        神戸大学 梅木奨学会学生学会派遣奨学金 給付
+                        Kobe University Umeki Scholarship for Conference
+                        Attendance (2024)
                     </li>
                     <li class="achievement-item">
-                        2024年度 日本物流学会 物流研究奨励賞 受賞
+                        Japan Logistics Society Research Encouragement Award
+                        (2024)
                     </li>
                 </ul>
             </section>
 
-            <!-- その他業績 -->
+            <!-- Other Academic Activities -->
             <section class="achievements-section" id="other-activities">
-                <h2 class="section-title">その他の学術活動</h2>
+                <h2 class="section-title">Other Academic Activities</h2>
                 <ul class="achievements-list">
                     <li class="achievement-item">
                         <span class="achievement-event">Techno-Ocean 2025</span
-                        >, ポスター発表, 神戸国際展示場2号館, 兵庫県,
-                        2025年11月27日~29日.
+                        >, Poster Presentation, Kobe International Convention
+                        Center Hall 2, Hyogo Prefecture, November 27-29, 2025.
                     </li>
                 </ul>
             </section>
         </main>
 
         <footer role="contentinfo">
-            <small>&copy; 2025 Hisatoshi Naganawa. All rights reserved.</small>
+            <small>&copy; 2026 Hisatoshi Naganawa. All rights reserved.</small>
         </footer>
 
         <script>
