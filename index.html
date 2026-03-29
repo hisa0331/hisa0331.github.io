@@ -96,14 +96,15 @@
             }
 
             body.night-mode .night-mode-toggle {
-                border-color: #88bbee;
-                color: #88bbee;
-                background: rgba(26, 26, 26, 0.8);
+                border-color: #ffffcc;
+                color: #ffffcc;
+                background: rgba(255, 255, 255, 0.2);
             }
 
             body.night-mode .night-mode-toggle:hover {
-                background-color: #88bbee;
-                color: #1a1a1a;
+                background-color: #ffffcc;
+                color: #0d0d0d;
+                border-color: #ffffcc;
             }
 
             footer {
@@ -115,6 +116,17 @@
             header.light-text,
             footer.light-text {
                 color: #6699cc;
+            }
+
+            header.light-text .night-mode-toggle {
+                color: #6699cc;
+                border-color: #6699cc;
+            }
+
+            header.light-text .night-mode-toggle:hover {
+                background-color: #6699cc;
+                color: white;
+                border-color: #6699cc;
             }
 
             .header__logo {
@@ -302,19 +314,27 @@
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
-                background-color: #6699cc;
-                color: #ffffcc;
+                width: 40px;
+                height: 40px;
+                background-color: transparent;
                 text-decoration: none;
                 transition: all 0.3s ease;
-                font-size: 1.2rem;
+            }
+
+            .social-link img {
+                width: 40px;
+                height: 40px;
+                object-fit: contain;
+                display: block;
+            }
+
+            body.night-mode .social-link img {
             }
 
             .social-link:hover {
-                background-color: #557aab;
                 transform: translateY(-3px);
+                opacity: 0.8;
+            }
                 box-shadow: 0 4px 12px rgba(102, 153, 204, 0.3);
             }
 
@@ -588,24 +608,30 @@
                                 rel="noopener noreferrer"
                                 class="social-link"
                                 title="LinkedIn"
-                                >in</a
                             >
+                                <img
+                                    src="img/linkedin-icon.svg"
+                                    alt="LinkedIn"
+                                />
+                            </a>
                             <a
                                 href="https://orcid.org/0009-0009-3023-8080"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="social-link"
                                 title="ORCID"
-                                >ORC</a
                             >
+                                <img src="img/ORCID_iD.svg" alt="ORCID" />
+                            </a>
                             <a
                                 href="https://github.com/hisa0331"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="social-link"
                                 title="GitHub"
-                                >⭐</a
                             >
+                                <img src="img/github-icon.svg" alt="GitHub" />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -693,40 +719,52 @@
                 <!-- Related Research Institutions -->
                 <div class="experience-section">
                     <h3>Related Research Institutions</h3>
-                    <p style="margin: 0; line-height: 1.8">
-                        <a
-                            href="https://www.maritime.kobe-u.ac.jp/imarc/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="related-link"
-                        >
-                            International Maritime Research Center (IMARC)
-                        </a>
-                        <a
-                            href="https://www.picenter.gatech.edu/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="related-link"
-                        >
-                            The Pi Center
-                        </a>
-                        <a
-                            href="https://eng.unimelb.edu.au/industry/transport/research/freight-and-city-logistics"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="related-link"
-                        >
-                            Freight and City Logistics Research
-                        </a>
-                        <a
-                            href="https://www.ehirata.com/home"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="related-link"
-                        >
-                            E. Hirata Research
-                        </a>
-                    </p>
+                    <div style="margin: 0">
+                        <div>
+                            <span class="related-bullet">・</span>
+                            <a
+                                href="https://www.maritime.kobe-u.ac.jp/imarc/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="related-link"
+                            >
+                                International Maritime Research Center (IMARC)
+                            </a>
+                        </div>
+                        <div>
+                            <span class="related-bullet">・</span>
+                            <a
+                                href="https://www.picenter.gatech.edu/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="related-link"
+                            >
+                                The Pi Center
+                            </a>
+                        </div>
+                        <div>
+                            <span class="related-bullet">・</span>
+                            <a
+                                href="https://eng.unimelb.edu.au/industry/transport/research/freight-and-city-logistics"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="related-link"
+                            >
+                                Freight and City Logistics Research
+                            </a>
+                        </div>
+                        <div>
+                            <span class="related-bullet">・</span>
+                            <a
+                                href="https://www.ehirata.com/home"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="related-link"
+                            >
+                                E. Hirata Research
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>

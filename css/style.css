@@ -720,19 +720,31 @@ body {
     right: 20px;
     z-index: 100;
     padding: 8px 12px;
-    background-color: var(--toggle-bg);
-    border: 1px solid var(--toggle-border);
+    background-color: #1ca9e3;
+    border: 1px solid #1ca9e3;
     border-radius: 4px;
-    color: var(--text-color);
+    color: white;
     cursor: pointer;
     font-size: 12px;
     transition: all 0.3s ease;
 }
 
 .night-mode-toggle:hover {
-    background-color: var(--accent-color);
+    background-color: #1589bf;
     color: white;
-    border-color: var(--accent-color);
+    border-color: #1589bf;
+}
+
+body.night-mode .night-mode-toggle {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #ffff00;
+    color: #ffff00;
+}
+
+body.night-mode .night-mode-toggle:hover {
+    background-color: #ffff00;
+    border-color: #ffff00;
+    color: #0d0d0d;
 }
 
 /* Dark Mode Header */
@@ -946,37 +958,48 @@ body.night-mode .feature-item:hover {
 }
 
 /* Related Research Institutions */
-.related-link {
-    display: inline-block;
-    padding: 6px 12px;
+.related-bullet {
+    margin-right: 8px;
+    color: #333;
+}
+
+body.night-mode .related-bullet {
+    color: #e0e0e0;
+}
+
+a.related-link {
+    display: inline;
+    padding: 0;
     background-color: transparent;
-    border-radius: 4px;
-    border: 1px solid var(--accent-color);
+    border-radius: 0;
+    border: none;
     text-decoration: none;
     transition: all 0.3s ease;
-    color: var(--accent-color);
-    font-size: 0.9rem;
+    color: #333 !important;
+    font-size: 0.95rem;
     font-weight: 500;
-    margin-right: 10px;
-    margin-bottom: 8px;
+    margin-right: 0;
+    margin-bottom: 0;
+    line-height: 1.8;
 }
 
-body.night-mode .related-link {
-    border-color: #88bbee;
-    color: #88bbee;
+body.night-mode a.related-link {
+    border-color: transparent;
+    color: #e0e0e0 !important;
 }
 
-.related-link:hover {
-    background-color: var(--accent-color);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+a.related-link:hover {
+    background-color: transparent;
+    color: #666 !important;
+    transform: none;
+    box-shadow: none;
+    text-decoration: underline;
 }
 
-body.night-mode .related-link:hover {
-    background-color: #88bbee;
-    color: #1a1a1a;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+body.night-mode a.related-link:hover {
+    background-color: transparent;
+    color: #b0d4f1 !important;
+    box-shadow: none;
 }
 
 /* Responsive Design for Profile Page */
