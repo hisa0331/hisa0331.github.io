@@ -266,6 +266,14 @@
                 justify-content: center;
                 font-size: 60px;
                 flex-shrink: 0;
+                overflow: hidden;
+            }
+
+            .profile-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
             }
 
             .profile-info {
@@ -579,7 +587,7 @@
         </header>
 
         <footer role="contentinfo" id="footer">
-            <small>&copy; 2025 Hisatoshi Naganawa</small>
+            <small>&copy; 2026 Hisatoshi Naganawa</small>
         </footer>
 
         <div id="node-1" role="presentation" aria-hidden="true"></div>
@@ -590,7 +598,9 @@
 
                 <!-- Profile Header -->
                 <div class="profile-header">
-                    <div class="profile-image">👨‍🔬</div>
+                    <div class="profile-image">
+                        <img src="img/myface.jpeg" alt="Hisatoshi Naganawa" />
+                    </div>
                     <div class="profile-info">
                         <h2>Hisatoshi Naganawa</h2>
                         <p class="profile-title">
@@ -631,6 +641,18 @@
                                 title="GitHub"
                             >
                                 <img src="img/github-icon.svg" alt="GitHub" />
+                            </a>
+                            <a
+                                href="https://scholar.google.com/citations?user=OZMep7EAAAAJ&hl=ja"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="social-link"
+                                title="Google Scholar"
+                            >
+                                <img
+                                    src="img/Google_Scholar_logo.svg"
+                                    alt="Google Scholar"
+                                />
                             </a>
                         </div>
                     </div>
