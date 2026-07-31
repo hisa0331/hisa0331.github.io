@@ -31,6 +31,11 @@
                 --main-bg: #f0f4f8;
                 --main-text: #222;
                 --main-title: #333;
+                /* Driven by JS from the p5.js canvas opacity: fully
+                   transparent while the animation is at 100%, easing in
+                   to the normal frosted look as it fades on scroll. */
+                --chrome-alpha: 0;
+                --chrome-blur: 0px;
             }
 
             body.night-mode {
@@ -71,10 +76,6 @@
                 transition: color 0.3s ease;
             }
 
-            footer {
-                backdrop-filter: blur(10px);
-            }
-
             header {
                 top: 0;
                 display: grid;
@@ -86,14 +87,48 @@
                header doesn't become a containing block for its
                position:fixed descendants (the mobile nav overlay,
                night-mode toggle) — filter/backdrop-filter on an ancestor
-               would otherwise pin them to the header's box. */
+               would otherwise pin them to the header's box. The pseudo
+               also extends well above the header (and footer's below it)
+               so iOS Safari's rubber-band overscroll doesn't reveal a
+               solid, unblurred strip past the fixed header/footer. */
             header::before {
                 content: "";
                 position: absolute;
-                inset: 0;
-                backdrop-filter: blur(10px);
+                top: -200px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(240, 244, 248, var(--chrome-alpha));
+                backdrop-filter: blur(var(--chrome-blur));
                 z-index: -1;
                 pointer-events: none;
+                transition:
+                    background-color 0.2s ease-out,
+                    backdrop-filter 0.2s ease-out;
+            }
+
+            body.night-mode header::before {
+                background: rgba(26, 26, 26, var(--chrome-alpha));
+            }
+
+            footer::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: -200px;
+                background: rgba(240, 244, 248, var(--chrome-alpha));
+                backdrop-filter: blur(var(--chrome-blur));
+                z-index: -1;
+                pointer-events: none;
+                transition:
+                    background-color 0.2s ease-out,
+                    backdrop-filter 0.2s ease-out;
+            }
+
+            body.night-mode footer::after {
+                background: rgba(26, 26, 26, var(--chrome-alpha));
             }
 
             .night-mode-toggle {
@@ -876,15 +911,6 @@
                             presenting at international conferences.
                         </p>
                     </div>
-                    <div class="experience-item">
-                        <h4>Power Modeller</h4>
-                        <p class="period">JERA Co., Inc. | 2025-04 ~ Present</p>
-                        <p>
-                            Conducting research and development in power
-                            modeling, writing original research papers, and
-                            presenting at international conferences.
-                        </p>
-                    </div>
                 </div>
 
                 <!-- Education Section -->
@@ -962,8 +988,7 @@
                                 rel="noopener noreferrer"
                                 class="related-link"
                             >
-                                International Maritime Research Center (IMaRC),
-                                Kobe University
+                                IMaRC, Kobe University
                             </a>
                         </div>
                         <div>
@@ -974,8 +999,7 @@
                                 rel="noopener noreferrer"
                                 class="related-link"
                             >
-                                International Transport Laboratory, Kobe
-                                University
+                                International Transport Lab, Kobe University
                             </a>
                         </div>
                         <div>
@@ -986,8 +1010,8 @@
                                 rel="noopener noreferrer"
                                 class="related-link"
                             >
-                                Freight and City Logistics Research, The
-                                University of Melbourne
+                                Physical Internet Lab, The University of
+                                Melbourne
                             </a>
                         </div>
                         <div>
@@ -998,7 +1022,7 @@
                                 rel="noopener noreferrer"
                                 class="related-link"
                             >
-                                Yoshida Laboratory, University of Tsukuba
+                                Yoshida Lab, University of Tsukuba
                             </a>
                         </div>
                     </div>
@@ -1114,19 +1138,37 @@
                             return;
                         }
 
-                        window.addEventListener("scroll", () => {
+                        const root = document.documentElement;
+
+                        const updateOnScroll = () => {
                             const scrollY = window.scrollY;
                             const fadeStart = 0;
                             const fadeEnd = window.innerHeight * 0.9;
 
                             // キャンバスの透明度制御
-                            const opacity = Math.max(
-                                0,
-                                1 -
-                                    (scrollY - fadeStart) /
-                                        (fadeEnd - fadeStart),
+                            const opacity = Math.min(
+                                1,
+                                Math.max(
+                                    0,
+                                    1 -
+                                        (scrollY - fadeStart) /
+                                            (fadeEnd - fadeStart),
+                                ),
                             );
                             node.style.opacity = opacity;
+
+                            // ヘッダー/フッターの背景を、アニメーションが
+                            // 100%表示のときは完全に透明にし、フェードする
+                            // につれて通常の半透明ガラス調に戻す
+                            const chromeStrength = 1 - opacity;
+                            root.style.setProperty(
+                                "--chrome-alpha",
+                                (chromeStrength * 0.6).toFixed(3),
+                            );
+                            root.style.setProperty(
+                                "--chrome-blur",
+                                `${(chromeStrength * 10).toFixed(2)}px`,
+                            );
 
                             // ヘッダー/フッター色制御
                             if (opacity < 0.5) {
@@ -1148,7 +1190,10 @@
                             } else {
                                 main.classList.remove("is-visible");
                             }
-                        });
+                        };
+
+                        window.addEventListener("scroll", updateOnScroll);
+                        updateOnScroll();
                     } catch (error) {
                         console.error("スクロール処理エラー:", error);
                     }

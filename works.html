@@ -86,14 +86,25 @@
                header doesn't become a containing block for its
                position:fixed descendants (the mobile nav overlay,
                night-mode toggle) — filter/backdrop-filter on an ancestor
-               would otherwise pin them to the header's box. */
+               would otherwise pin them to the header's box. The pseudo
+               also extends well above the header (and footer's below it)
+               so iOS Safari's rubber-band overscroll doesn't reveal a
+               solid, unblurred strip past the fixed header/footer. */
             header::before {
                 content: "";
                 position: absolute;
-                inset: 0;
+                top: -200px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(240, 244, 248, 0.6);
                 backdrop-filter: blur(10px);
                 z-index: -1;
                 pointer-events: none;
+            }
+
+            body.night-mode header::before {
+                background: rgba(26, 26, 26, 0.6);
             }
 
             body.night-mode header {
@@ -606,6 +617,23 @@
                 width: 100%;
                 backdrop-filter: blur(10px);
                 z-index: 500;
+            }
+
+            footer::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: -200px;
+                background: rgba(240, 244, 248, 0.6);
+                backdrop-filter: blur(10px);
+                z-index: -1;
+                pointer-events: none;
+            }
+
+            body.night-mode footer::after {
+                background: rgba(26, 26, 26, 0.6);
             }
 
             body.night-mode footer {
