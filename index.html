@@ -187,7 +187,7 @@
 
             .night-mode-toggle {
                 position: fixed;
-                top: 15px;
+                top: 9.5px;
                 right: 30px;
                 z-index: 1001;
                 background: rgba(255, 255, 255, 0.2);
@@ -249,6 +249,20 @@
             }
 
             .night-mode-toggle.light-text:hover {
+                background-color: #6699cc;
+                color: white;
+                border-color: #6699cc;
+            }
+
+            /* Higher specificity than "body.night-mode .night-mode-toggle"
+               so the light-text (scrolled-past-the-hero) color actually
+               takes effect in dark mode too, matching the header. */
+            body.night-mode .night-mode-toggle.light-text {
+                color: #6699cc;
+                border-color: #6699cc;
+            }
+
+            body.night-mode .night-mode-toggle.light-text:hover {
                 background-color: #6699cc;
                 color: white;
                 border-color: #6699cc;
@@ -1024,7 +1038,7 @@
                             </p>
                         </div>
                         <div class="feature-item">
-                            <h4>⚡ Energy System Modeling</h4>
+                            <h4>⚡ Energy Modeling</h4>
                             <p>
                                 Developing optimization models for power
                                 systems, electricity markets, and generation
