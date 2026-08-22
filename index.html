@@ -514,7 +514,19 @@
                 display: block;
             }
 
+            .social-link img.clarivate-logo-night {
+                display: none;
+            }
+
             body.night-mode .social-link img {
+            }
+
+            body.night-mode .clarivate-logo-day {
+                display: none;
+            }
+
+            body.night-mode .clarivate-logo-night {
+                display: block;
             }
 
             .social-link:hover {
@@ -969,7 +981,13 @@
                                 title="Web of Science (Clarivate)"
                             >
                                 <img
+                                    class="clarivate-logo-day"
                                     src="img/clarivate-logo.svg"
+                                    alt="Web of Science (Clarivate)"
+                                />
+                                <img
+                                    class="clarivate-logo-night"
+                                    src="img/clarivate-logo-night.svg"
                                     alt="Web of Science (Clarivate)"
                                 />
                             </a>
